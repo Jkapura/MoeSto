@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MoeSto.Web", "MoeSto.Web\MoeSto.Web.csproj", "{6EF2F6E3-F5BE-4DD4-A8F5-CD1357F2D108}"
+EndProject
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "MoeSto.DB", "MoeSto.DB\MoeSto.DB.sqlproj", "{F240BE7A-E77D-4CC4-B292-00068A0118C8}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6EF2F6E3-F5BE-4DD4-A8F5-CD1357F2D108}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6EF2F6E3-F5BE-4DD4-A8F5-CD1357F2D108}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6EF2F6E3-F5BE-4DD4-A8F5-CD1357F2D108}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6EF2F6E3-F5BE-4DD4-A8F5-CD1357F2D108}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F240BE7A-E77D-4CC4-B292-00068A0118C8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F240BE7A-E77D-4CC4-B292-00068A0118C8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F240BE7A-E77D-4CC4-B292-00068A0118C8}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{F240BE7A-E77D-4CC4-B292-00068A0118C8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F240BE7A-E77D-4CC4-B292-00068A0118C8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F240BE7A-E77D-4CC4-B292-00068A0118C8}.Release|Any CPU.Deploy.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
