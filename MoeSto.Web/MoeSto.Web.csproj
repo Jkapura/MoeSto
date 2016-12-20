@@ -120,6 +120,8 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Content Include="Global.asax" />
     <Content Include="Scripts\js\assets\bootstrap-select.min.js" />
+    <Content Include="Scripts\js\assets\bootstrap\bootstrap.js" />
+    <Content Include="Scripts\js\assets\bootstrap\bootstrap.min.js" />
     <Content Include="Scripts\js\assets\custom-map.js" />
     <Content Include="Scripts\js\assets\custom.js" />
     <Content Include="Scripts\js\assets\draggable-0.1.js" />
