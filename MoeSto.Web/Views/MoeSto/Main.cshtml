@@ -15,7 +15,7 @@
 
 @section Body
 {
-    <body class="page-homepage horizontal-search-float" id="page-top" data-spy="scroll" data-target=".navigation" data-offset="90">
+    <body class="page-homepage map-google horizontal-search-float" id="page-top" data-spy="scroll" data-target=".navigation" data-offset="90">
     <div class="wrapper">
     <div class="navigation">
         <div class="secondary-navigation">
@@ -297,14 +297,15 @@
 
     <!-- Page Content -->
     <div id="page-content">
-    <section id="banner">
+    @*<section id="banner">
         <div class="block has-dark-background background-color-default-darker center text-banner">
             <div class="container">
                 <h1 class="no-bottom-margin no-border">Zoner Is Fully Loaded Real Estate Template with <a href="#" class="text-underline">Tons of Features</a>!
                 </h1>
             </div>
         </div>
-    </section><!-- /#banner -->
+    </section>*@
+     <!-- /#banner -->
     <section id="our-services" class="block">
         <div class="container">
             <header class="section-title">
@@ -922,14 +923,8 @@
     </footer>
     <!-- end Page Footer -->
     </div>
-</body>
-
-}
-
-@section Scripts
-{
-    <script type="text/javascript" src="~/Scripts/js/assets/jquery-2.1.0.min.js"></script>
-    <script src="https://api-maps.yandex.ru/1.1/index.xml" type="text/javascript"></script>
+<script type="text/javascript" src="~/Scripts/js/assets/jquery-2.1.0.min.js"></script>
+    <script src="//api-maps.yandex.ru/2.0/?load=package.standard&lang=ru-RU" type="text/javascript"></script>
     <script type="text/javascript" src="~/Scripts/js/assets/jquery-migrate-1.2.1.min.js"></script>
     <script type="text/javascript" src="~/Scripts/js/assets/bootstrap/bootstrap.min.js"></script>
     <script type="text/javascript" src="~/Scripts/js/assets/smoothscroll.js"></script>
@@ -953,4 +948,10 @@
     <script type="text/javascript" src="~/Scripts/js/assets/custom.js"></script>
     
     <script src="~/Scripts/Main.js"></script>
+        </body>
+}
+
+@section Scripts
+{
+    
 }

@@ -286,7 +286,7 @@ $(document).ready(function($) {
             }
         );
     }
-
+    setMapHeight();
     centerSearchBox();
 
 });
@@ -478,11 +478,11 @@ function setMapHeight(){
     if($body.hasClass('has-fullscreen-map')) {
         $('#map').height($(window).height() - $('.navigation').height());
     }
-	$('#map').height($(window).height() - $('.navigation').height());
+    $('#map').height($(window).height() - $('.navigation').height());
 	var mapHeight = $('#map').height();
 	var contentHeight = $('.search-box').height();
 	var top;
-	top = (mapHeight / 2) - (contentHeight / 2);
+	top = (mapHeight / 2) - (contentHeight /2);
 	if( !$('body').hasClass('horizontal-search-float') ){
 		$('.search-box-wrapper').css('top', top);
 	}

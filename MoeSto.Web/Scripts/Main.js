@@ -1,8 +1,25 @@
-﻿YMaps.jQuery(function () {
-    // Создает экземпляр карты и привязывает его к созданному контейнеру
-    var map = new YMaps.Map(YMaps.jQuery("#map")[0]);
+﻿
+ymaps.ready(init);
 
-    // Устанавливает начальные параметры отображения карты: центр карты и коэффициент масштабирования
-    map.setCenter(new YMaps.GeoPoint(37.64, 55.76), 10);
-   
-})
+function init() {
+    // Данные о местоположении, определённом по IP
+    var geolocation = ymaps.geolocation,
+    // координаты
+        coords = [geolocation.latitude, geolocation.longitude],
+        myMap = new ymaps.Map('map', {
+            center: coords,
+            zoom: 10
+        });
+
+    myMap.geoObjects.add(
+        new ymaps.Placemark(
+            coords,
+            {
+                // В балуне: страна, город, регион.
+                balloonContentHeader: geolocation.country,
+                balloonContent: geolocation.city,
+                balloonContentFooter: geolocation.region
+            }
+        )
+    );
+}
