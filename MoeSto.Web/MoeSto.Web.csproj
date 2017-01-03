@@ -112,6 +112,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Company.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -539,28 +540,28 @@
     <Content Include="Styles\img\star-on.png" />
     <Content Include="Styles\img\user-02.jpg" />
     <Content Include="Styles\img\video.jpg" />
-    <Content Include="Styles\scss\colors\brown.css">
+    <Content Include="Styles\assets\scss\colors\brown.css">
       <DependentUpon>brown.scss</DependentUpon>
     </Content>
-    <Content Include="Styles\scss\colors\green.css">
+    <Content Include="Styles\assets\scss\colors\green.css">
       <DependentUpon>green.scss</DependentUpon>
     </Content>
-    <Content Include="Styles\scss\colors\grey.css">
+    <Content Include="Styles\assets\scss\colors\grey.css">
       <DependentUpon>grey.scss</DependentUpon>
     </Content>
-    <Content Include="Styles\scss\colors\magenta.css">
+    <Content Include="Styles\assets\scss\colors\magenta.css">
       <DependentUpon>magenta.scss</DependentUpon>
     </Content>
-    <Content Include="Styles\scss\colors\orange.css">
+    <Content Include="Styles\assets\scss\colors\orange.css">
       <DependentUpon>orange.scss</DependentUpon>
     </Content>
-    <Content Include="Styles\scss\colors\red.css">
+    <Content Include="Styles\assets\scss\colors\red.css">
       <DependentUpon>red.scss</DependentUpon>
     </Content>
-    <Content Include="Styles\scss\colors\violet.css">
+    <Content Include="Styles\assets\scss\colors\violet.css">
       <DependentUpon>violet.scss</DependentUpon>
     </Content>
-    <Content Include="Styles\scss\style.css">
+    <Content Include="Styles\assets\scss\style.css">
       <DependentUpon>style.scss</DependentUpon>
     </Content>
     <Content Include="Web.config" />
@@ -574,7 +575,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -605,58 +605,61 @@
     <Content Include="Scripts\js\assets\sources\leaflet-plugins-master.zip" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Styles\scss\compass-old.zip" />
-    <Content Include="Styles\scss\rtl.scss" />
-    <Content Include="Styles\scss\style.scss" />
+    <Content Include="Styles\assets\scss\compass-old.zip" />
+    <Content Include="Styles\assets\scss\rtl.scss" />
+    <Content Include="Styles\assets\scss\style.scss" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Styles\scss\helpers\_classes.scss" />
-    <Content Include="Styles\scss\helpers\_elements.scss" />
-    <Content Include="Styles\scss\helpers\_footer.scss" />
-    <Content Include="Styles\scss\helpers\_forms.scss" />
-    <Content Include="Styles\scss\helpers\_header.scss" />
-    <Content Include="Styles\scss\helpers\_map.scss" />
-    <Content Include="Styles\scss\helpers\_mixins.scss" />
-    <Content Include="Styles\scss\helpers\_print.scss" />
-    <Content Include="Styles\scss\helpers\_responsive.scss" />
-    <Content Include="Styles\scss\helpers\_variables.scss" />
+    <Content Include="Styles\assets\scss\helpers\_classes.scss" />
+    <Content Include="Styles\assets\scss\helpers\_elements.scss" />
+    <Content Include="Styles\assets\scss\helpers\_footer.scss" />
+    <Content Include="Styles\assets\scss\helpers\_forms.scss" />
+    <Content Include="Styles\assets\scss\helpers\_header.scss" />
+    <Content Include="Styles\assets\scss\helpers\_map.scss" />
+    <Content Include="Styles\assets\scss\helpers\_mixins.scss" />
+    <Content Include="Styles\assets\scss\helpers\_print.scss" />
+    <Content Include="Styles\assets\scss\helpers\_responsive.scss" />
+    <Content Include="Styles\assets\scss\helpers\_variables.scss" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Styles\scss\compass\css3\_animation.scss" />
-    <Content Include="Styles\scss\compass\css3\_appearance.scss" />
-    <Content Include="Styles\scss\compass\css3\_background-clip.scss" />
-    <Content Include="Styles\scss\compass\css3\_background-origin.scss" />
-    <Content Include="Styles\scss\compass\css3\_background-size.scss" />
-    <Content Include="Styles\scss\compass\css3\_border-radius.scss" />
-    <Content Include="Styles\scss\compass\css3\_box-shadow.scss" />
-    <Content Include="Styles\scss\compass\css3\_box-sizing.scss" />
-    <Content Include="Styles\scss\compass\css3\_box.scss" />
-    <Content Include="Styles\scss\compass\css3\_columns.scss" />
-    <Content Include="Styles\scss\compass\css3\_deprecated-support.scss" />
-    <Content Include="Styles\scss\compass\css3\_filter.scss" />
-    <Content Include="Styles\scss\compass\css3\_flexbox.scss" />
-    <Content Include="Styles\scss\compass\css3\_font-face.scss" />
-    <Content Include="Styles\scss\compass\css3\_hyphenation.scss" />
-    <Content Include="Styles\scss\compass\css3\_images.scss" />
-    <Content Include="Styles\scss\compass\css3\_inline-block.scss" />
-    <Content Include="Styles\scss\compass\css3\_opacity.scss" />
-    <Content Include="Styles\scss\compass\css3\_pie.scss" />
-    <Content Include="Styles\scss\compass\css3\_regions.scss" />
-    <Content Include="Styles\scss\compass\css3\_selection.scss" />
-    <Content Include="Styles\scss\compass\css3\_shared.scss" />
-    <Content Include="Styles\scss\compass\css3\_text-shadow.scss" />
-    <Content Include="Styles\scss\compass\css3\_transform.scss" />
-    <Content Include="Styles\scss\compass\css3\_transition.scss" />
-    <Content Include="Styles\scss\compass\css3\_user-interface.scss" />
+    <Content Include="Styles\assets\scss\compass\css3\_animation.scss" />
+    <Content Include="Styles\assets\scss\compass\css3\_appearance.scss" />
+    <Content Include="Styles\assets\scss\compass\css3\_background-clip.scss" />
+    <Content Include="Styles\assets\scss\compass\css3\_background-origin.scss" />
+    <Content Include="Styles\assets\scss\compass\css3\_background-size.scss" />
+    <Content Include="Styles\assets\scss\compass\css3\_border-radius.scss" />
+    <Content Include="Styles\assets\scss\compass\css3\_box-shadow.scss" />
+    <Content Include="Styles\assets\scss\compass\css3\_box-sizing.scss" />
+    <Content Include="Styles\assets\scss\compass\css3\_box.scss" />
+    <Content Include="Styles\assets\scss\compass\css3\_columns.scss" />
+    <Content Include="Styles\assets\scss\compass\css3\_deprecated-support.scss" />
+    <Content Include="Styles\assets\scss\compass\css3\_filter.scss" />
+    <Content Include="Styles\assets\scss\compass\css3\_flexbox.scss" />
+    <Content Include="Styles\assets\scss\compass\css3\_font-face.scss" />
+    <Content Include="Styles\assets\scss\compass\css3\_hyphenation.scss" />
+    <Content Include="Styles\assets\scss\compass\css3\_images.scss" />
+    <Content Include="Styles\assets\scss\compass\css3\_inline-block.scss" />
+    <Content Include="Styles\assets\scss\compass\css3\_opacity.scss" />
+    <Content Include="Styles\assets\scss\compass\css3\_pie.scss" />
+    <Content Include="Styles\assets\scss\compass\css3\_regions.scss" />
+    <Content Include="Styles\assets\scss\compass\css3\_selection.scss" />
+    <Content Include="Styles\assets\scss\compass\css3\_shared.scss" />
+    <Content Include="Styles\assets\scss\compass\css3\_text-shadow.scss" />
+    <Content Include="Styles\assets\scss\compass\css3\_transform.scss" />
+    <Content Include="Styles\assets\scss\compass\css3\_transition.scss" />
+    <Content Include="Styles\assets\scss\compass\css3\_user-interface.scss" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Styles\scss\colors\brown.scss" />
-    <Content Include="Styles\scss\colors\green.scss" />
-    <Content Include="Styles\scss\colors\grey.scss" />
-    <Content Include="Styles\scss\colors\magenta.scss" />
-    <Content Include="Styles\scss\colors\orange.scss" />
-    <Content Include="Styles\scss\colors\red.scss" />
-    <Content Include="Styles\scss\colors\violet.scss" />
+    <Content Include="Styles\assets\scss\colors\brown.scss" />
+    <Content Include="Styles\assets\scss\colors\green.scss" />
+    <Content Include="Styles\assets\scss\colors\grey.scss" />
+    <Content Include="Styles\assets\scss\colors\magenta.scss" />
+    <Content Include="Styles\assets\scss\colors\orange.scss" />
+    <Content Include="Styles\assets\scss\colors\red.scss" />
+    <Content Include="Styles\assets\scss\colors\violet.scss" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\MoeSto\MapView.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

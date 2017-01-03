@@ -22,7 +22,7 @@ $(document).ready(function($) {
             }
         }
     });
-
+    setMapHeight();
     setNavigationPosition();
 
     $('.tool-tip').tooltip();
@@ -176,7 +176,7 @@ $(document).ready(function($) {
             }
         });
     }
-
+    
 //  Agent State
 
     $('#agent-switch').on('ifClicked', function(event) {
@@ -286,7 +286,7 @@ $(document).ready(function($) {
             }
         );
     }
-    setMapHeight();
+    
     centerSearchBox();
 
 });

@@ -12,7 +12,30 @@
     <link rel="stylesheet" href="~/Styles/css/owl.carousel.css" type="text/css">
     <link rel="stylesheet" href="~/Styles/css/style.css"type="text/css">
 }
-
+@section Scripts
+{
+    <script type="text/javascript" src="~/Scripts/js/assets/jquery-2.1.0.min.js"></script>
+    
+    <script type="text/javascript" src="~/Scripts/js/assets/jquery-migrate-1.2.1.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/js/assets/bootstrap/bootstrap.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/js/assets/smoothscroll.js"></script>
+    
+    
+    <script type="text/javascript" src="~/Scripts/js/assets/owl.carousel.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/js/assets/bootstrap-select.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/js/assets/jquery.validate.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/js/assets/jquery.placeholder.js"></script>
+    <script type="text/javascript" src="~/Scripts/js/assets/icheck.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/js/assets/jquery.vanillabox-0.1.5.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/js/assets/retina-1.1.0.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/js/assets/jshashtable-2.1_src.js"></script>
+    <script type="text/javascript" src="~/Scripts/js/assets/jquery.numberformatter-1.2.3.js"></script>
+    <script type="text/javascript" src="~/Scripts/js/assets/tmpl.js"></script>
+    <script type="text/javascript" src="~/Scripts/js/assets/jquery.dependClass-0.1.js"></script>
+    <script type="text/javascript" src="~/Scripts/js/assets/draggable-0.1.js"></script>
+    <script type="text/javascript" src="~/Scripts/js/assets/jquery.slider.js"></script>
+    <script type="text/javascript" src="~/Scripts/js/assets/markerclusterer_packed.js"></script>
+}
 @section Body
 {
     <body class="page-homepage map-google horizontal-search-float" id="page-top" data-spy="scroll" data-target=".navigation" data-offset="90">
@@ -138,7 +161,10 @@
     </div>
 
     <!-- Map -->
-    <div id="map"></div>
+    @{
+    Html.RenderPartial("MapView");
+    
+    }
     <!-- end Map -->
 
     <!-- Search Box -->
@@ -923,35 +949,9 @@
     </footer>
     <!-- end Page Footer -->
     </div>
-<script type="text/javascript" src="~/Scripts/js/assets/jquery-2.1.0.min.js"></script>
-    <script src="//api-maps.yandex.ru/2.0/?load=package.standard&lang=ru-RU" type="text/javascript"></script>
-    <script type="text/javascript" src="~/Scripts/js/assets/jquery-migrate-1.2.1.min.js"></script>
-    <script type="text/javascript" src="~/Scripts/js/assets/bootstrap/bootstrap.min.js"></script>
-    <script type="text/javascript" src="~/Scripts/js/assets/smoothscroll.js"></script>
+
     
-    
-    <script type="text/javascript" src="~/Scripts/js/assets/owl.carousel.min.js"></script>
-    <script type="text/javascript" src="~/Scripts/js/assets/bootstrap-select.min.js"></script>
-    <script type="text/javascript" src="~/Scripts/js/assets/jquery.validate.min.js"></script>
-    <script type="text/javascript" src="~/Scripts/js/assets/jquery.placeholder.js"></script>
-    <script type="text/javascript" src="~/Scripts/js/assets/icheck.min.js"></script>
-    <script type="text/javascript" src="~/Scripts/js/assets/jquery.vanillabox-0.1.5.min.js"></script>
-    <script type="text/javascript" src="~/Scripts/js/assets/retina-1.1.0.min.js"></script>
-    <script type="text/javascript" src="~/Scripts/js/assets/jshashtable-2.1_src.js"></script>
-    <script type="text/javascript" src="~/Scripts/js/assets/jquery.numberformatter-1.2.3.js"></script>
-    <script type="text/javascript" src="~/Scripts/js/assets/tmpl.js"></script>
-    <script type="text/javascript" src="~/Scripts/js/assets/jquery.dependClass-0.1.js"></script>
-    <script type="text/javascript" src="~/Scripts/js/assets/draggable-0.1.js"></script>
-    <script type="text/javascript" src="~/Scripts/js/assets/jquery.slider.js"></script>
-    <script type="text/javascript" src="~/Scripts/js/assets/markerclusterer_packed.js"></script>
-    <script type="text/javascript" src="~/Scripts/js/assets/custom-map.js"></script>
-    <script type="text/javascript" src="~/Scripts/js/assets/custom.js"></script>
-    
-    <script src="~/Scripts/Main.js"></script>
         </body>
 }
 
-@section Scripts
-{
-    
-}
+

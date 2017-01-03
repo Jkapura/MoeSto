@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="Companies">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" name="Company">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Name" type="xs:string" />
+              <xs:element name="Type" type="xs:string" />
+              <xs:element name="Unp" type="xs:string" />
+              <xs:element name="CatalogUrl" type="xs:string" />
+              <xs:element name="Address" type="xs:string" />
+              <xs:element name="Email" type="xs:string" />
+              <xs:element minOccurs="0" name="Phones">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element maxOccurs="unbounded" name="Phone" type="xs:string" />
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="FoundOnCardone" type="xs:boolean" />
+              <xs:element name="CardoneStatus" type="xs:string" />
+              <xs:element name="CardoneContractNo" type="xs:string" />
+              <xs:element name="CardoneContractStatus" type="xs:string" />
+              <xs:element minOccurs="0" maxOccurs="unbounded" name="Coordinates" type="xs:string" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

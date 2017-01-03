@@ -5,6 +5,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MoeSto.Web", "MoeSto.Web\Mo
 EndProject
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "MoeSto.DB", "MoeSto.DB\MoeSto.DB.sqlproj", "{F240BE7A-E77D-4CC4-B292-00068A0118C8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MoeSto.DAC", "MoeSto.DAC\MoeSto.DAC.csproj", "{D8879A13-4636-4A38-B826-E2A3672C7936}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XMLParser", "XMLParser\XMLParser.csproj", "{C486A50D-AB58-450A-9993-2F599926A64D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +25,14 @@ Global
 		{F240BE7A-E77D-4CC4-B292-00068A0118C8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F240BE7A-E77D-4CC4-B292-00068A0118C8}.Release|Any CPU.Build.0 = Release|Any CPU
 		{F240BE7A-E77D-4CC4-B292-00068A0118C8}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{D8879A13-4636-4A38-B826-E2A3672C7936}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D8879A13-4636-4A38-B826-E2A3672C7936}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D8879A13-4636-4A38-B826-E2A3672C7936}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D8879A13-4636-4A38-B826-E2A3672C7936}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C486A50D-AB58-450A-9993-2F599926A64D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C486A50D-AB58-450A-9993-2F599926A64D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C486A50D-AB58-450A-9993-2F599926A64D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C486A50D-AB58-450A-9993-2F599926A64D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
