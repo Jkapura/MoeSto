@@ -42,6 +42,7 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.Linq" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
@@ -113,6 +114,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Company.cs" />
+    <Compile Include="Models\Shape.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -159,7 +161,9 @@
     <Content Include="Scripts\js\assets\tmpl.js" />
     <Content Include="Scripts\js\assets\waypoints.min.js" />
     <Content Include="Scripts\js\assets\_owl.carousel.min.js" />
-    <Content Include="Scripts\Main.js" />
+    <Content Include="Scripts\MapScripts\MapController.js" />
+    <Content Include="Scripts\MapScripts\MapUtils.js" />
+    <Content Include="Scripts\MapScripts\Main.js" />
     <Content Include="Styles\bootstrap\css\bootstrap-theme.css" />
     <Content Include="Styles\bootstrap\css\bootstrap-theme.min.css" />
     <Content Include="Styles\bootstrap\css\bootstrap.css" />
@@ -660,6 +664,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\MoeSto\MapView.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MoeSto.DAC\MoeSto.DAC.csproj">
+      <Project>{D8879A13-4636-4A38-B826-E2A3672C7936}</Project>
+      <Name>MoeSto.DAC</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
