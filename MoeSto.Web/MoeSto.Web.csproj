@@ -115,6 +115,9 @@
     </Compile>
     <Compile Include="Models\Company.cs" />
     <Compile Include="Models\Shape.cs" />
+    <Compile Include="Models\YPoint.cs" />
+    <Compile Include="Models\YPointCollection.cs" />
+    <Compile Include="Models\YPointGeometry.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
