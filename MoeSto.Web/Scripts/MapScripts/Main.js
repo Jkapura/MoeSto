@@ -25,6 +25,7 @@ function init() {
             // Object options are set with the geoObject prefix.
             geoObjectOpenBalloonOnClick: false
         });
+        loadingObjectManager.objects.events.add(['click'], onClickEvent);
         myMap.geoObjects.add(loadingObjectManager);
         
     }, function (e) { 
@@ -36,6 +37,10 @@ function init() {
     });
     function createMap(state) {
         myMap = new ymaps.Map('map', state);
+    }
+    function onClickEvent (e) {
+        var obj = e.get('target');
+        
     }
 }
 
