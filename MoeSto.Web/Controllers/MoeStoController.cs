@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
+﻿using System.Linq;
 using System.Text.RegularExpressions;
 using System.Web.Mvc;
 using MoeSto.DAC;
 using MoeSto.Web.Models;
+using MoeSto.Web.Models.DtoObjects;
 
 namespace MoeSto.Web.Controllers
 {
@@ -24,15 +22,40 @@ namespace MoeSto.Web.Controllers
             if (bounds!=null)
             {
                 var shape = GetShapeFromBounds(bounds);
-                var result =
+                var result = ConvertCompaniesToDto(
                     dbContext.Companies.Where(
                         x =>
                             shape.LeftBottomLatitude <= x.Latitude && x.Latitude <= shape.RightUpLatitude &&shape.LeftBottomLongitude <= x.Longitude && x.Longitude <= shape.RightUpLongitude
-                            ).ToList();
+                            ).ToList());
                 return Json(result,JsonRequestBehavior.AllowGet);
             }
 
             return Json(null, JsonRequestBehavior.AllowGet);
+        }
+
+     
+
+        private YPointCollection ConvertCompaniesToDto(System.Collections.Generic.List<DAC.Company> list)
+        {
+            if (list != null)
+            {
+                YPointCollection points = new YPointCollection();
+                foreach (var item in list)
+                {
+                    YPoint point = new YPoint();
+                    point.id = item.Id;
+                    YPointGeometry _geometry = new YPointGeometry();
+                    _geometry.coordinates.Add(item.Latitude);
+                    _geometry.coordinates.Add(item.Longitude);
+                    point.geometry = _geometry;
+                    YPointProperties _properties =new YPointProperties();
+                    point.properties = _properties;
+
+                    points.features.Add(point);
+                }
+                return points;
+            }
+            return null;
         }
 
         //Example of string:[[53.79388,27.374416],[53.971588,28.063091]]
