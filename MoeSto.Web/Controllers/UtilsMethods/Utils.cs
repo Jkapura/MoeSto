@@ -7,7 +7,7 @@ namespace MoeSto.Web.Controllers.UtilsMethods
 {
     public static class Utils
     {
-        public static YPointCollection ConvertCompaniesToDto(System.Collections.Generic.List<DAC.Company> list)
+        public static YPointCollection ConvertCompaniesToDto(System.Collections.Generic.List<DAC.Companies> list)
         {
             if (list != null)
             {

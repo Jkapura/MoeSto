@@ -9,7 +9,7 @@ namespace MoeSto.Web.Controllers
     {
         // GET: /Map/
         DataAccessManagerDataContext dbContext = new DataAccessManagerDataContext();
-        public string tile(string bbox,string callback)
+        public string tile(string bbox, string callback)
         {
             if (bbox != null)
             {
@@ -19,34 +19,8 @@ namespace MoeSto.Web.Controllers
                         x =>
                             shape.LeftBottomLatitude <= x.Latitude && x.Latitude <= shape.RightUpLatitude && shape.LeftBottomLongitude <= x.Longitude && x.Longitude <= shape.RightUpLongitude
                             ).ToList());
-                return callback +"("+new JavaScriptSerializer().Serialize(new {error = "", data = result})+")";
-//                return callback + @"
-//                ({
-//        type: 'FeatureCollection',
-//        features: [
-//             {
-//                 type: 'Feature',
-//                 geometry: {
-//                     type: 'Point',
-//                     coordinates: [53.915212, 27.635395]
-//                 },
-//                 id: 23,
-//                 properties: {
-//                     balloonContent: 'Содержимое балуна метки',
-//                     iconContent: 'Содержимое метки'
-//                 },
-//                 options: {
-//                     preset: 'islands#yellowIcon'
-//                 }
-//             }
-//        ]
-//    });";
-
-
+                return callback + "(" + new JavaScriptSerializer().Serialize(new { error = "", data = result }) + ")";
             }
-
-       //     return Json(null, JsonRequestBehavior.AllowGet);
-
             return null;
         }
 

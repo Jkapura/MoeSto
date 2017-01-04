@@ -1,24 +1,27 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="MoeSto" Class="DataAccessManagerDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
   <Connection Mode="AppSettings" ConnectionString="Data Source=.;Initial Catalog=MoeSto;Integrated Security=True" SettingsObjectName="MoeSto.DAC.Properties.Settings" SettingsPropertyName="MoeStoConnectionString" Provider="System.Data.SqlClient" />
-  <Table Name="dbo.Image" Member="Images">
-    <Type Name="Image">
-      <Column Name="CompanyId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="ImageId" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="ImagePresentation" Type="System.Data.Linq.Binary" DbType="Image" CanBeNull="true" UpdateCheck="Never" />
-      <Association Name="Company_Image" Member="Company" ThisKey="CompanyId" OtherKey="Id" Type="Company" IsForeignKey="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.Company" Member="Companies">
-    <Type Name="Company">
+  <Table Name="dbo.Companies" Member="Companies">
+    <Type Name="Companies">
       <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="Name" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
-      <Column Name="Address" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
-      <Column Name="Email" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
-      <Column Name="Unp" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="Phones" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
       <Column Name="Latitude" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
       <Column Name="Longitude" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
-      <Association Name="Company_Image" Member="Images" ThisKey="Id" OtherKey="CompanyId" Type="Image" />
+    </Type>
+  </Table>
+  <Table Name="dbo.CompanyDetails" Member="CompanyDetails">
+    <Type Name="CompanyDetails">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="Unp" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CatalogUrl" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Address" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Email" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Phones" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="FoundOnCardone" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="CardoneStatus" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="CardoneContractNo" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CardoneContractStatus" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Latitude" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="Longitude" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
     </Type>
   </Table>
 </Database>

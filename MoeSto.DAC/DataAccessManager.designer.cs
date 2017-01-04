@@ -30,12 +30,12 @@ namespace MoeSto.DAC
 		
     #region Extensibility Method Definitions
     partial void OnCreated();
-    partial void InsertImage(Image instance);
-    partial void UpdateImage(Image instance);
-    partial void DeleteImage(Image instance);
-    partial void InsertCompany(Company instance);
-    partial void UpdateCompany(Company instance);
-    partial void DeleteCompany(Company instance);
+    partial void InsertCompanies(Companies instance);
+    partial void UpdateCompanies(Companies instance);
+    partial void DeleteCompanies(Companies instance);
+    partial void InsertCompanyDetails(CompanyDetails instance);
+    partial void UpdateCompanyDetails(CompanyDetails instance);
+    partial void DeleteCompanyDetails(CompanyDetails instance);
     #endregion
 		
 		public DataAccessManagerDataContext() : 
@@ -68,197 +68,34 @@ namespace MoeSto.DAC
 			OnCreated();
 		}
 		
-		public System.Data.Linq.Table<Image> Images
+		public System.Data.Linq.Table<Companies> Companies
 		{
 			get
 			{
-				return this.GetTable<Image>();
+				return this.GetTable<Companies>();
 			}
 		}
 		
-		public System.Data.Linq.Table<Company> Companies
+		public System.Data.Linq.Table<CompanyDetails> CompanyDetails
 		{
 			get
 			{
-				return this.GetTable<Company>();
+				return this.GetTable<CompanyDetails>();
 			}
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Image")]
-	public partial class Image : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _CompanyId;
-		
-		private int _ImageId;
-		
-		private System.Data.Linq.Binary _ImagePresentation;
-		
-		private EntityRef<Company> _Company;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnCompanyIdChanging(int value);
-    partial void OnCompanyIdChanged();
-    partial void OnImageIdChanging(int value);
-    partial void OnImageIdChanged();
-    partial void OnImagePresentationChanging(System.Data.Linq.Binary value);
-    partial void OnImagePresentationChanged();
-    #endregion
-		
-		public Image()
-		{
-			this._Company = default(EntityRef<Company>);
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CompanyId", DbType="Int NOT NULL")]
-		public int CompanyId
-		{
-			get
-			{
-				return this._CompanyId;
-			}
-			set
-			{
-				if ((this._CompanyId != value))
-				{
-					if (this._Company.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnCompanyIdChanging(value);
-					this.SendPropertyChanging();
-					this._CompanyId = value;
-					this.SendPropertyChanged("CompanyId");
-					this.OnCompanyIdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ImageId", DbType="Int NOT NULL", IsPrimaryKey=true)]
-		public int ImageId
-		{
-			get
-			{
-				return this._ImageId;
-			}
-			set
-			{
-				if ((this._ImageId != value))
-				{
-					this.OnImageIdChanging(value);
-					this.SendPropertyChanging();
-					this._ImageId = value;
-					this.SendPropertyChanged("ImageId");
-					this.OnImageIdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ImagePresentation", DbType="Image", UpdateCheck=UpdateCheck.Never)]
-		public System.Data.Linq.Binary ImagePresentation
-		{
-			get
-			{
-				return this._ImagePresentation;
-			}
-			set
-			{
-				if ((this._ImagePresentation != value))
-				{
-					this.OnImagePresentationChanging(value);
-					this.SendPropertyChanging();
-					this._ImagePresentation = value;
-					this.SendPropertyChanged("ImagePresentation");
-					this.OnImagePresentationChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Company_Image", Storage="_Company", ThisKey="CompanyId", OtherKey="Id", IsForeignKey=true)]
-		public Company Company
-		{
-			get
-			{
-				return this._Company.Entity;
-			}
-			set
-			{
-				Company previousValue = this._Company.Entity;
-				if (((previousValue != value) 
-							|| (this._Company.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Company.Entity = null;
-						previousValue.Images.Remove(this);
-					}
-					this._Company.Entity = value;
-					if ((value != null))
-					{
-						value.Images.Add(this);
-						this._CompanyId = value.Id;
-					}
-					else
-					{
-						this._CompanyId = default(int);
-					}
-					this.SendPropertyChanged("Company");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Company")]
-	public partial class Company : INotifyPropertyChanging, INotifyPropertyChanged
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Companies")]
+	public partial class Companies : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 		
 		private int _Id;
 		
-		private string _Name;
-		
-		private string _Address;
-		
-		private string _Email;
-		
-		private int _Unp;
-		
-		private string _Phones;
-		
 		private double _Latitude;
 		
 		private double _Longitude;
-		
-		private EntitySet<Image> _Images;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -266,25 +103,14 @@ namespace MoeSto.DAC
     partial void OnCreated();
     partial void OnIdChanging(int value);
     partial void OnIdChanged();
-    partial void OnNameChanging(string value);
-    partial void OnNameChanged();
-    partial void OnAddressChanging(string value);
-    partial void OnAddressChanged();
-    partial void OnEmailChanging(string value);
-    partial void OnEmailChanged();
-    partial void OnUnpChanging(int value);
-    partial void OnUnpChanged();
-    partial void OnPhonesChanging(string value);
-    partial void OnPhonesChanged();
     partial void OnLatitudeChanging(double value);
     partial void OnLatitudeChanged();
     partial void OnLongitudeChanging(double value);
     partial void OnLongitudeChanged();
     #endregion
 		
-		public Company()
+		public Companies()
 		{
-			this._Images = new EntitySet<Image>(new Action<Image>(this.attach_Images), new Action<Image>(this.detach_Images));
 			OnCreated();
 		}
 		
@@ -304,106 +130,6 @@ namespace MoeSto.DAC
 					this._Id = value;
 					this.SendPropertyChanged("Id");
 					this.OnIdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Name", DbType="NVarChar(MAX) NOT NULL", CanBeNull=false)]
-		public string Name
-		{
-			get
-			{
-				return this._Name;
-			}
-			set
-			{
-				if ((this._Name != value))
-				{
-					this.OnNameChanging(value);
-					this.SendPropertyChanging();
-					this._Name = value;
-					this.SendPropertyChanged("Name");
-					this.OnNameChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Address", DbType="NVarChar(MAX) NOT NULL", CanBeNull=false)]
-		public string Address
-		{
-			get
-			{
-				return this._Address;
-			}
-			set
-			{
-				if ((this._Address != value))
-				{
-					this.OnAddressChanging(value);
-					this.SendPropertyChanging();
-					this._Address = value;
-					this.SendPropertyChanged("Address");
-					this.OnAddressChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Email", DbType="NVarChar(MAX)")]
-		public string Email
-		{
-			get
-			{
-				return this._Email;
-			}
-			set
-			{
-				if ((this._Email != value))
-				{
-					this.OnEmailChanging(value);
-					this.SendPropertyChanging();
-					this._Email = value;
-					this.SendPropertyChanged("Email");
-					this.OnEmailChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Unp", DbType="Int NOT NULL")]
-		public int Unp
-		{
-			get
-			{
-				return this._Unp;
-			}
-			set
-			{
-				if ((this._Unp != value))
-				{
-					this.OnUnpChanging(value);
-					this.SendPropertyChanging();
-					this._Unp = value;
-					this.SendPropertyChanged("Unp");
-					this.OnUnpChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Phones", DbType="NVarChar(MAX)")]
-		public string Phones
-		{
-			get
-			{
-				return this._Phones;
-			}
-			set
-			{
-				if ((this._Phones != value))
-				{
-					this.OnPhonesChanging(value);
-					this.SendPropertyChanging();
-					this._Phones = value;
-					this.SendPropertyChanged("Phones");
-					this.OnPhonesChanged();
 				}
 			}
 		}
@@ -448,16 +174,353 @@ namespace MoeSto.DAC
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Company_Image", Storage="_Images", ThisKey="Id", OtherKey="CompanyId")]
-		public EntitySet<Image> Images
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.CompanyDetails")]
+	public partial class CompanyDetails : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _Id;
+		
+		private string _Name;
+		
+		private System.Nullable<int> _Unp;
+		
+		private string _CatalogUrl;
+		
+		private string _Address;
+		
+		private string _Email;
+		
+		private string _Phones;
+		
+		private System.Nullable<bool> _FoundOnCardone;
+		
+		private string _CardoneStatus;
+		
+		private System.Nullable<int> _CardoneContractNo;
+		
+		private string _CardoneContractStatus;
+		
+		private double _Latitude;
+		
+		private double _Longitude;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdChanging(int value);
+    partial void OnIdChanged();
+    partial void OnNameChanging(string value);
+    partial void OnNameChanged();
+    partial void OnUnpChanging(System.Nullable<int> value);
+    partial void OnUnpChanged();
+    partial void OnCatalogUrlChanging(string value);
+    partial void OnCatalogUrlChanged();
+    partial void OnAddressChanging(string value);
+    partial void OnAddressChanged();
+    partial void OnEmailChanging(string value);
+    partial void OnEmailChanged();
+    partial void OnPhonesChanging(string value);
+    partial void OnPhonesChanged();
+    partial void OnFoundOnCardoneChanging(System.Nullable<bool> value);
+    partial void OnFoundOnCardoneChanged();
+    partial void OnCardoneStatusChanging(string value);
+    partial void OnCardoneStatusChanged();
+    partial void OnCardoneContractNoChanging(System.Nullable<int> value);
+    partial void OnCardoneContractNoChanged();
+    partial void OnCardoneContractStatusChanging(string value);
+    partial void OnCardoneContractStatusChanged();
+    partial void OnLatitudeChanging(double value);
+    partial void OnLatitudeChanged();
+    partial void OnLongitudeChanging(double value);
+    partial void OnLongitudeChanged();
+    #endregion
+		
+		public CompanyDetails()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int Id
 		{
 			get
 			{
-				return this._Images;
+				return this._Id;
 			}
 			set
 			{
-				this._Images.Assign(value);
+				if ((this._Id != value))
+				{
+					this.OnIdChanging(value);
+					this.SendPropertyChanging();
+					this._Id = value;
+					this.SendPropertyChanged("Id");
+					this.OnIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Name", DbType="NVarChar(MAX) NOT NULL", CanBeNull=false)]
+		public string Name
+		{
+			get
+			{
+				return this._Name;
+			}
+			set
+			{
+				if ((this._Name != value))
+				{
+					this.OnNameChanging(value);
+					this.SendPropertyChanging();
+					this._Name = value;
+					this.SendPropertyChanged("Name");
+					this.OnNameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Unp", DbType="Int")]
+		public System.Nullable<int> Unp
+		{
+			get
+			{
+				return this._Unp;
+			}
+			set
+			{
+				if ((this._Unp != value))
+				{
+					this.OnUnpChanging(value);
+					this.SendPropertyChanging();
+					this._Unp = value;
+					this.SendPropertyChanged("Unp");
+					this.OnUnpChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CatalogUrl", DbType="NVarChar(MAX)")]
+		public string CatalogUrl
+		{
+			get
+			{
+				return this._CatalogUrl;
+			}
+			set
+			{
+				if ((this._CatalogUrl != value))
+				{
+					this.OnCatalogUrlChanging(value);
+					this.SendPropertyChanging();
+					this._CatalogUrl = value;
+					this.SendPropertyChanged("CatalogUrl");
+					this.OnCatalogUrlChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Address", DbType="NVarChar(MAX)")]
+		public string Address
+		{
+			get
+			{
+				return this._Address;
+			}
+			set
+			{
+				if ((this._Address != value))
+				{
+					this.OnAddressChanging(value);
+					this.SendPropertyChanging();
+					this._Address = value;
+					this.SendPropertyChanged("Address");
+					this.OnAddressChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Email", DbType="NVarChar(MAX)")]
+		public string Email
+		{
+			get
+			{
+				return this._Email;
+			}
+			set
+			{
+				if ((this._Email != value))
+				{
+					this.OnEmailChanging(value);
+					this.SendPropertyChanging();
+					this._Email = value;
+					this.SendPropertyChanged("Email");
+					this.OnEmailChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Phones", DbType="NVarChar(MAX)")]
+		public string Phones
+		{
+			get
+			{
+				return this._Phones;
+			}
+			set
+			{
+				if ((this._Phones != value))
+				{
+					this.OnPhonesChanging(value);
+					this.SendPropertyChanging();
+					this._Phones = value;
+					this.SendPropertyChanged("Phones");
+					this.OnPhonesChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FoundOnCardone", DbType="Bit")]
+		public System.Nullable<bool> FoundOnCardone
+		{
+			get
+			{
+				return this._FoundOnCardone;
+			}
+			set
+			{
+				if ((this._FoundOnCardone != value))
+				{
+					this.OnFoundOnCardoneChanging(value);
+					this.SendPropertyChanging();
+					this._FoundOnCardone = value;
+					this.SendPropertyChanged("FoundOnCardone");
+					this.OnFoundOnCardoneChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CardoneStatus", DbType="NVarChar(MAX)")]
+		public string CardoneStatus
+		{
+			get
+			{
+				return this._CardoneStatus;
+			}
+			set
+			{
+				if ((this._CardoneStatus != value))
+				{
+					this.OnCardoneStatusChanging(value);
+					this.SendPropertyChanging();
+					this._CardoneStatus = value;
+					this.SendPropertyChanged("CardoneStatus");
+					this.OnCardoneStatusChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CardoneContractNo", DbType="Int")]
+		public System.Nullable<int> CardoneContractNo
+		{
+			get
+			{
+				return this._CardoneContractNo;
+			}
+			set
+			{
+				if ((this._CardoneContractNo != value))
+				{
+					this.OnCardoneContractNoChanging(value);
+					this.SendPropertyChanging();
+					this._CardoneContractNo = value;
+					this.SendPropertyChanged("CardoneContractNo");
+					this.OnCardoneContractNoChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CardoneContractStatus", DbType="NVarChar(MAX)")]
+		public string CardoneContractStatus
+		{
+			get
+			{
+				return this._CardoneContractStatus;
+			}
+			set
+			{
+				if ((this._CardoneContractStatus != value))
+				{
+					this.OnCardoneContractStatusChanging(value);
+					this.SendPropertyChanging();
+					this._CardoneContractStatus = value;
+					this.SendPropertyChanged("CardoneContractStatus");
+					this.OnCardoneContractStatusChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Latitude", DbType="Float NOT NULL")]
+		public double Latitude
+		{
+			get
+			{
+				return this._Latitude;
+			}
+			set
+			{
+				if ((this._Latitude != value))
+				{
+					this.OnLatitudeChanging(value);
+					this.SendPropertyChanging();
+					this._Latitude = value;
+					this.SendPropertyChanged("Latitude");
+					this.OnLatitudeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Longitude", DbType="Float NOT NULL")]
+		public double Longitude
+		{
+			get
+			{
+				return this._Longitude;
+			}
+			set
+			{
+				if ((this._Longitude != value))
+				{
+					this.OnLongitudeChanging(value);
+					this.SendPropertyChanging();
+					this._Longitude = value;
+					this.SendPropertyChanged("Longitude");
+					this.OnLongitudeChanged();
+				}
 			}
 		}
 		
@@ -479,18 +542,6 @@ namespace MoeSto.DAC
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
-		}
-		
-		private void attach_Images(Image entity)
-		{
-			this.SendPropertyChanging();
-			entity.Company = this;
-		}
-		
-		private void detach_Images(Image entity)
-		{
-			this.SendPropertyChanging();
-			entity.Company = null;
 		}
 	}
 }

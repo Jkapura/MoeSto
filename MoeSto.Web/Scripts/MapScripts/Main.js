@@ -27,26 +27,6 @@ function init() {
         });
         myMap.geoObjects.add(loadingObjectManager);
         
-        //var mapController = new MapController('MoeSto/GetObjectsByBounds');
-        //mapController.getObjectsByBounds(
-        //    bounds,
-        //    function (data) {
-        //        var objectManager = new ymaps.LoadingObjectManager({
-        //            // Чтобы метки начали кластеризоваться, выставляем опцию.
-        //            clusterize: true,
-        //            // ObjectManager принимает те же опции, что и кластеризатор.
-        //            gridSize: 32
-        //        });
-        //        // Чтобы задать опции одиночным объектам и кластерам,
-        //        // обратимся к дочерним коллекциям ObjectManager.
-        //        objectManager.objects.options.set('preset', 'islands#greenDotIcon');
-        //        objectManager.clusters.options.set('preset', 'islands#greenClusterIcons');
-                
-        //        myMap.geoObjects.add(objectManager);
-
-        //        objectManager.add(data);
-        //    },
-        //    function() {});
     }, function (e) { 
         // If the location cannot be obtained, we just create a map.
         createMap({

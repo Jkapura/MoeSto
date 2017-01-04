@@ -115,7 +115,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\Company.cs" />
     <Compile Include="Models\DtoObjects\YPointProperties.cs" />
     <Compile Include="Models\Shape.cs" />
     <Compile Include="Models\DtoObjects\YPoint.cs" />
