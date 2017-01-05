@@ -8,13 +8,13 @@ function init() {
    
 
     function getBalloonContentBody(data) {
-        //return '<div class="companyDetailsImg"><span class="companyDetailsName">'+ (data.Name!=null?data.Name:"") +'</span></div><p class="companyDetailsCommon">' + (data.Address != null ? data.Address : "") + '</p><p>' + (data.Phones != null ? data.Phones : "") + '</p><a class="companyDetailsEmail" href="mailto:' + (data.Email != null ? data.Email : "") + '">' + (data.Email != null ? data.Email : "") + '</a>';
         return '<div class="companyDetailsWrapper"><div class="companyDetailsImg"><p class="companyDetailsName">' +
             (data.Name != null ? data.Name : "") +
-            '</p></div><p class="companyDetailsCommon">' +
+            '</p></div><div class="companyDetailsCommon"><p>' +
             (data.Address != null ? data.Address : "") + '</p><p>' +
-            (data.Phones != null ? data.Phones : "") + '</p><a class="companyDetailsEmail" href="mailto:' + (data.Email != null ? data.Email : "") + '">' +
-            (data.Email != null ? data.Email : "") + '</a></div>';
+            (data.Phones != null ? data.Phones : "") + '</p><a class="companyDetailsEmail" href="mailto:' +
+            (data.Email != null ? data.Email : "") + '">' +
+            (data.Email != null ? data.Email : "") + '</a></div></div>';
 
     }
     function getBalloonContentFooter(data) {

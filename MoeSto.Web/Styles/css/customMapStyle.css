@@ -1,19 +1,30 @@
 ﻿.companyDetailsCommon {
-    width: 243px;
-    word-wrap:break-word
+    width: 260px;
+    word-wrap: break-word;
+    padding: 10px;
 }
 .companyDetailsImg {
     background-image: url(https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcS1X24OL0XceTu80WY_0-V-2kWRYgNTP4AXfUGdIgwm7-p8h_Yf);
-    width: 243px;
+    width: 260px;
     height: 160px;
 }
 .companyDetailsName {
     color: white;
     text-shadow: 1px 1px 1px rgba(0,0,0,.5);
     font-size: 18px;
-    padding: 135px 5px 5px 5px;
+    /*padding: 135px 5px 5px 5px;*/
+    bottom: 5px;
     opacity: 1;
 }
 .companyDetailsEmail {
     cursor: pointer;
+}
+
+.ymaps-2-1-47-balloon__content {
+    padding: 0px !important;
+    margin: 0px !important;
+}
+.ymaps-2-1-47-balloon__close-button {
+    color: white;
+    text-shadow: 1px 1px 1px rgba(0,0,0,.5);
 }
