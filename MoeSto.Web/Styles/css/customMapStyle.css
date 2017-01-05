@@ -1,0 +1,19 @@
+﻿.companyDetailsCommon {
+    width: 243px;
+    word-wrap:break-word
+}
+.companyDetailsImg {
+    background-image: url(https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcS1X24OL0XceTu80WY_0-V-2kWRYgNTP4AXfUGdIgwm7-p8h_Yf);
+    width: 243px;
+    height: 160px;
+}
+.companyDetailsName {
+    color: white;
+    text-shadow: 1px 1px 1px rgba(0,0,0,.5);
+    font-size: 18px;
+    padding: 135px 5px 5px 5px;
+    opacity: 1;
+}
+.companyDetailsEmail {
+    cursor: pointer;
+}

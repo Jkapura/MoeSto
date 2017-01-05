@@ -5,11 +5,21 @@
       <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="Latitude" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
       <Column Name="Longitude" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Association Name="Company_CompanyDetail" Member="CompanyDetail" ThisKey="Id" OtherKey="Id" Type="CompanyDetails" Cardinality="One" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Images" Member="Images">
+    <Type Name="Images">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="CompanyId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="MainImage" Type="System.Data.Linq.Binary" DbType="VarBinary(MAX) NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+      <Association Name="Image_CompanyDetail" Member="CompanyDetails" ThisKey="Id" OtherKey="MainImageId" Type="CompanyDetails" />
+      <Association Name="CompanyDetail_Image" Member="CompanyDetail" ThisKey="CompanyId" OtherKey="Id" Type="CompanyDetails" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.CompanyDetails" Member="CompanyDetails">
     <Type Name="CompanyDetails">
-      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="Name" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
       <Column Name="Unp" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="CatalogUrl" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
@@ -22,6 +32,19 @@
       <Column Name="CardoneContractStatus" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
       <Column Name="Latitude" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
       <Column Name="Longitude" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="MainImageId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="CompanyDetail_Image" Member="Images" ThisKey="Id" OtherKey="CompanyId" Type="Images" />
+      <Association Name="Company_CompanyDetail" Member="Companies" Storage="_Company" ThisKey="Id" OtherKey="Id" Type="Companies" IsForeignKey="true" />
+      <Association Name="Image_CompanyDetail" Member="Image" ThisKey="MainImageId" OtherKey="Id" Type="Images" IsForeignKey="true" />
     </Type>
   </Table>
+  <Function Name="dbo.GetCompanyDetailsById" Method="GetCompanyDetailsById" IsComposable="true">
+    <Parameter Name="id" Type="System.Int32" DbType="Int" />
+    <ElementType Name="GetCompanyDetailsByIdResult1">
+      <Column Name="Name" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="Address" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Email" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Phones" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+    </ElementType>
+  </Function>
 </Database>

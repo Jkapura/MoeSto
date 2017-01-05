@@ -115,7 +115,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\DtoObjects\YPointProperties.cs" />
+    <Compile Include="Models\DtoObjects\CompanyDetailsDto.cs" />
     <Compile Include="Models\Shape.cs" />
     <Compile Include="Models\DtoObjects\YPoint.cs" />
     <Compile Include="Models\DtoObjects\YPointCollection.cs" />
@@ -182,6 +182,7 @@
     <Content Include="Styles\css\colors\orange.css" />
     <Content Include="Styles\css\colors\red.css" />
     <Content Include="Styles\css\colors\violet.css" />
+    <Content Include="Styles\css\customMapStyle.css" />
     <Content Include="Styles\css\fileinput.min.css" />
     <Content Include="Styles\css\jquery.slider.min.css" />
     <Content Include="Styles\css\leaflet.css" />
@@ -483,6 +484,7 @@
     <Content Include="Styles\img\member-02.jpg" />
     <Content Include="Styles\img\member-03.jpg" />
     <Content Include="Styles\img\member-04.jpg" />
+    <Content Include="Styles\img\MoeStoImg\images.jpg" />
     <Content Include="Styles\img\price-range-dragger.png" />
     <Content Include="Styles\img\properties\floor-plan-01.jpg" />
     <Content Include="Styles\img\properties\floor-plan-02.jpg" />

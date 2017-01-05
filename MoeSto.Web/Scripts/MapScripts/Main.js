@@ -5,14 +5,17 @@ ymaps.ready(init);
 
 function init() {
 
-    function getBalloonContentHeader(data) {
-        if (data.Name!=null){
-            return '<p>' + data.Name + '</p>';
-        }
-    }
+   
 
     function getBalloonContentBody(data) {
-        return '<p>' + (data.Address!=null?data.Address:"") + '</p><p>' + (data.Phones!=null?data.Phones:"") + '</p><p>' + (data.Email!=null?data.Email:"") + '</p>';
+        //return '<div class="companyDetailsImg"><span class="companyDetailsName">'+ (data.Name!=null?data.Name:"") +'</span></div><p class="companyDetailsCommon">' + (data.Address != null ? data.Address : "") + '</p><p>' + (data.Phones != null ? data.Phones : "") + '</p><a class="companyDetailsEmail" href="mailto:' + (data.Email != null ? data.Email : "") + '">' + (data.Email != null ? data.Email : "") + '</a>';
+        return '<div class="companyDetailsWrapper"><div class="companyDetailsImg"><p class="companyDetailsName">' +
+            (data.Name != null ? data.Name : "") +
+            '</p></div><p class="companyDetailsCommon">' +
+            (data.Address != null ? data.Address : "") + '</p><p>' +
+            (data.Phones != null ? data.Phones : "") + '</p><a class="companyDetailsEmail" href="mailto:' + (data.Email != null ? data.Email : "") + '">' +
+            (data.Email != null ? data.Email : "") + '</a></div>';
+
     }
     function getBalloonContentFooter(data) {
         return '<p>'+  '</p>' ;
@@ -35,7 +38,7 @@ function init() {
             // Cluster options are set with the 'cluster' prefix.
             clusterHasBalloon: false,
             // Object options are set with the geoObject prefix.
-            geoObjectOpenBalloonOnClick: true,
+            geoObjectOpenBalloonOnClick: false,
            
         });
         loadingObjectManager.objects.events.add(['click'], function(e){
@@ -46,19 +49,15 @@ function init() {
                 mapController.getCompanyDetailsById(
                     objectId,
                     function(data) {
-                        //if (loadingObjectManager.balloon.isOpen(objectId)) {
+                        
                         object.properties = {
-                            balloonContentHeader: getBalloonContentHeader(data),
+                            //balloonContentHeader: getBalloonContentHeader(data),
                             balloonContentBody: getBalloonContentBody(data),
                             ballonContentFooter: getBalloonContentFooter(data)
                         };
-                        //object.options.hintContent = "asdasdasd";
-                        //object.options.hint= "asdasdasd4";
-
-                        //loadingObjectManager.objects.balloon.setData({ balloonContent: "test" });
-                    //    loadingObjectManager.objects.balloon.setOptions({ hintContent: "test" });
+                        
                         loadingObjectManager.objects.balloon.open(objectId);
-                        //}
+                       
                     },
                     function() {}
                 );

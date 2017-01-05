@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using System.Text.RegularExpressions;
+using MoeSto.DAC;
 using MoeSto.Web.Models;
 using MoeSto.Web.Models.DtoObjects;
 
@@ -20,37 +21,13 @@ namespace MoeSto.Web.Controllers.UtilsMethods
                     _geometry.coordinates.Add(item.Latitude);
                     _geometry.coordinates.Add(item.Longitude);
                     point.geometry = _geometry;
-                   // YPointProperties _properties = new YPointProperties();
-                  //  point.properties = _properties;
-
                     points.features.Add(point);
                 }
                 return points;
             }
             return null;
         }
-        //public static YPointProperties GetProperties(System.Collections.Generic.List<DAC.Companies> list)
-        //{
-        //    if (list != null)
-        //    {
-        //        YPointCollection points = new YPointCollection();
-        //        foreach (var item in list)
-        //        {
-        //            YPoint point = new YPoint();
-        //            point.id = item.Id;
-        //            YPointGeometry _geometry = new YPointGeometry();
-        //            _geometry.coordinates.Add(item.Latitude);
-        //            _geometry.coordinates.Add(item.Longitude);
-        //            point.geometry = _geometry;
-        //            // YPointProperties _properties = new YPointProperties();
-        //            //  point.properties = _properties;
-
-        //            points.features.Add(point);
-        //        }
-        //        return points;
-        //    }
-        //    return null;
-        //}
+        
         //Example of string:[[53.79388,27.374416],[53.971588,28.063091]]
         public static Shape GetShapeFromBounds(string bounds)
         {
@@ -75,6 +52,21 @@ namespace MoeSto.Web.Controllers.UtilsMethods
                 }
             }
             return 0;
+        }
+
+        public static CompanyDetailsDto CompanyDetailsToDto(CompanyDetails details, Images image)
+        {
+            if (details != null)
+            {
+                var companyDetails = new CompanyDetailsDto();
+                companyDetails.Name = details.Name;
+                companyDetails.Address = details.Address;
+                companyDetails.Email = details.Email;
+                companyDetails.Phones = details.Phones;
+                //companyDetails.MainImage = image.MainImage;
+                return companyDetails;
+            }
+            return null;
         }
     }
 }

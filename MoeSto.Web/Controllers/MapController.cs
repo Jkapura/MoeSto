@@ -3,6 +3,8 @@ using System.Web.Mvc;
 using System.Web.Script.Serialization;
 using MoeSto.DAC;
 using MoeSto.Web.Controllers.UtilsMethods;
+using MoeSto.Web.Models.DtoObjects;
+
 namespace MoeSto.Web.Controllers
 {
     public class MapController : Controller
@@ -26,12 +28,18 @@ namespace MoeSto.Web.Controllers
 
         public JsonResult GetCompanyDetails(int id)
         {
-            if (id != null)
+            if (id != 0)
             {
-                var companyDetails = dbContext.CompanyDetails.FirstOrDefault(x => x.Id.Equals(id));
+                var details = dbContext.CompanyDetails.FirstOrDefault(x => x.Id.Equals(id));
+                var image = dbContext.Images.FirstOrDefault(x => x.CompanyId.Equals(id));
+                var companyDetails = Utils.CompanyDetailsToDto(details, image);
                 return Json(companyDetails, JsonRequestBehavior.AllowGet);
             }
             return null;
         }
+
+        
+
+        
     }
 }
