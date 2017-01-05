@@ -24,5 +24,14 @@ namespace MoeSto.Web.Controllers
             return null;
         }
 
+        public JsonResult GetCompanyDetails(int id)
+        {
+            if (id != null)
+            {
+                var companyDetails = dbContext.CompanyDetails.FirstOrDefault(x => x.Id.Equals(id));
+                return Json(companyDetails, JsonRequestBehavior.AllowGet);
+            }
+            return null;
+        }
     }
 }

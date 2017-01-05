@@ -2,7 +2,7 @@
     var self = this;
     self.controllerUrl = siteUrl;
 
-    self.getObjectsByBounds = function (bounds, successFun, failFun) {
+    self.getCompanyDetailsById = function (data, successFun, failFun) {
 
         $.ajax({
             url: self.controllerUrl,
@@ -10,7 +10,7 @@
             type: "get",
             dataType: "json",
             data: {
-                bounds: JSON.stringify(bounds)
+                id: JSON.stringify(data)
             },
             success: function (result) {
                 successFun(result);

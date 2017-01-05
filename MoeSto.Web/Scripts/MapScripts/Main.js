@@ -4,7 +4,19 @@
 ymaps.ready(init);
 
 function init() {
-    
+
+    function getBalloonContentHeader(data) {
+        if (data.Name!=null){
+            return '<p>' + data.Name + '</p>';
+        }
+    }
+
+    function getBalloonContentBody(data) {
+        return '<p>' + (data.Address!=null?data.Address:"") + '</p><p>' + (data.Phones!=null?data.Phones:"") + '</p><p>' + (data.Email!=null?data.Email:"") + '</p>';
+    }
+    function getBalloonContentFooter(data) {
+        return '<p>'+  '</p>' ;
+    }
     ymaps.geolocation.get().then(function (res) {
         var mapContainer = $('#map'),
 
@@ -23,9 +35,48 @@ function init() {
             // Cluster options are set with the 'cluster' prefix.
             clusterHasBalloon: false,
             // Object options are set with the geoObject prefix.
-            geoObjectOpenBalloonOnClick: false
+            geoObjectOpenBalloonOnClick: true,
+           
         });
-        loadingObjectManager.objects.events.add(['click'], onClickEvent);
+        loadingObjectManager.objects.events.add(['click'], function(e){
+            var objectId = e.get('objectId'),
+                object = loadingObjectManager.objects.getById(objectId);
+           
+                var mapController = new MapController("map/GetCompanyDetails");
+                mapController.getCompanyDetailsById(
+                    objectId,
+                    function(data) {
+                        //if (loadingObjectManager.balloon.isOpen(objectId)) {
+                        object.properties = {
+                            balloonContentHeader: getBalloonContentHeader(data),
+                            balloonContentBody: getBalloonContentBody(data),
+                            ballonContentFooter: getBalloonContentFooter(data)
+                        };
+                        //object.options.hintContent = "asdasdasd";
+                        //object.options.hint= "asdasdasd4";
+
+                        //loadingObjectManager.objects.balloon.setData({ balloonContent: "test" });
+                    //    loadingObjectManager.objects.balloon.setOptions({ hintContent: "test" });
+                        loadingObjectManager.objects.balloon.open(objectId);
+                        //}
+                    },
+                    function() {}
+                );
+            
+        });
+
+         
+
+        //loadingObjectManager.events.add('click', function () {
+
+           
+        //    if (myMap.balloon.isOpen()) {
+        //        balloon.setData({ content: Math.random() });
+        //    } else {
+        //        balloon = myMap.balloon.open(myMap.getCenter(), Math.random());
+        //    }
+        //});
+
         myMap.geoObjects.add(loadingObjectManager);
         
     }, function (e) { 
@@ -38,9 +89,8 @@ function init() {
     function createMap(state) {
         myMap = new ymaps.Map('map', state);
     }
-    function onClickEvent (e) {
-        var obj = e.get('target');
-        
-    }
+   
+     
+    
 }
 

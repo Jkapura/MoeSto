@@ -29,7 +29,28 @@ namespace MoeSto.Web.Controllers.UtilsMethods
             }
             return null;
         }
+        //public static YPointProperties GetProperties(System.Collections.Generic.List<DAC.Companies> list)
+        //{
+        //    if (list != null)
+        //    {
+        //        YPointCollection points = new YPointCollection();
+        //        foreach (var item in list)
+        //        {
+        //            YPoint point = new YPoint();
+        //            point.id = item.Id;
+        //            YPointGeometry _geometry = new YPointGeometry();
+        //            _geometry.coordinates.Add(item.Latitude);
+        //            _geometry.coordinates.Add(item.Longitude);
+        //            point.geometry = _geometry;
+        //            // YPointProperties _properties = new YPointProperties();
+        //            //  point.properties = _properties;
 
+        //            points.features.Add(point);
+        //        }
+        //        return points;
+        //    }
+        //    return null;
+        //}
         //Example of string:[[53.79388,27.374416],[53.971588,28.063091]]
         public static Shape GetShapeFromBounds(string bounds)
         {
