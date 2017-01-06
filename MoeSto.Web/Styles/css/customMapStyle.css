@@ -7,14 +7,18 @@
     background-image: url(https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcS1X24OL0XceTu80WY_0-V-2kWRYgNTP4AXfUGdIgwm7-p8h_Yf);
     width: 260px;
     height: 160px;
+    position: relative;
+    
 }
 .companyDetailsName {
     color: white;
     text-shadow: 1px 1px 1px rgba(0,0,0,.5);
     font-size: 18px;
     /*padding: 135px 5px 5px 5px;*/
-    bottom: 5px;
+    bottom: 0px;
     opacity: 1;
+    position: absolute;
+    padding-left: 8px;
 }
 .companyDetailsEmail {
     cursor: pointer;
