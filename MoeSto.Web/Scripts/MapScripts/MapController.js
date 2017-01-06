@@ -21,5 +21,24 @@
         });
 
     };
+    self.getCompanyDetailsByCoordinates = function (data, successFun, failFun) {
+
+        $.ajax({
+            url: self.controllerUrl,
+            cache: false,
+            type: "get",
+            dataType: "json",
+            data: {
+                coordinates: JSON.stringify(data)
+            },
+            success: function (result) {
+                successFun(result);
+            },
+            error: function (result) {
+                failFun(result);
+            }
+        });
+
+    };
     return self;
 };

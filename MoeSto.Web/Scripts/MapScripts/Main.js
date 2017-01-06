@@ -8,7 +8,7 @@ function init() {
    
 
     function getBalloonContentBody(data) {
-        return '<div class="companyDetailsWrapper"><div class="companyDetailsImg"><p class="companyDetailsName">' +
+        return '<div class="companyDetailsWrapper"><div class="companyDetailsImg imgWrapper"><p class="companyDetailsName">' +
             (data.Name != null ? data.Name : "") +
             '</p></div><div class="companyDetailsCommon"><p>' +
             (data.Address != null ? data.Address : "") + '</p><p>' +
@@ -39,6 +39,9 @@ function init() {
             clusterHasBalloon: false,
             // Object options are set with the geoObject prefix.
             geoObjectOpenBalloonOnClick: false,
+            clusterOpenBalloonOnClick: false,
+            
+            
            
         });
         loadingObjectManager.objects.events.add(['click'], function(e){
@@ -63,19 +66,42 @@ function init() {
                 );
             
         });
-
+        //event that happens on cluster click
+        loadingObjectManager.clusters.events.add(['click'], function (e) {
+            //get cluster id
+            var clusterId = e.get('objectId'),
+                //get cluster object
+                cluster = loadingObjectManager.clusters.getById(clusterId),
+                //get cluster coordinates (?)
+                clusterCoords = cluster.features[0].geometry.coordinates;
+            
+                var mapController = new MapController("map/GetCompanyDetailsByCoordinates");
+                mapController.getCompanyDetailsByCoordinates(
+                    clusterCoords,
+                    function (data) {
+                        
+                        var clusterId = e.get('objectId');
+                        var cluster = loadingObjectManager.clusters.getById(clusterId);
+                        var clusterFeatures = cluster.features;
+                        for (var j = 0; j < clusterFeatures.length; j++) {
+                            clusterFeatures[0].properties = {
+                                //balloonContentHeader: getBalloonContentHeader(data),
+                                balloonContentBody: getBalloonContentBody(data[j]) 
+                                
+                            };
+                        }
+                        //loadingObjectManager.clusters.balloon.open(cluster.id);
+                        loadingObjectManager.objects.balloon.open(clusterFeatures[0].id);
+                    },
+                    function() {}
+                );
+            
+        });
          
 
-        //loadingObjectManager.events.add('click', function () {
-
-           
-        //    if (myMap.balloon.isOpen()) {
-        //        balloon.setData({ content: Math.random() });
-        //    } else {
-        //        balloon = myMap.balloon.open(myMap.getCenter(), Math.random());
-        //    }
-        //});
-
+        function hasBalloonData(objectId) {
+            return loadingObjectManager.objects.getById(objectId).properties.balloonContent;
+        }
         myMap.geoObjects.add(loadingObjectManager);
         
     }, function (e) { 

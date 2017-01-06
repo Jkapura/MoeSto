@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using System.Text.RegularExpressions;
 using MoeSto.DAC;
 using MoeSto.Web.Models;
@@ -32,8 +33,7 @@ namespace MoeSto.Web.Controllers.UtilsMethods
         public static Shape GetShapeFromBounds(string bounds)
         {
             Shape shape = new Shape();
-            var strArray = Regex.Split(bounds, @"[^0-9\.]+")
-                .Where(c => c != "." && c.Trim() != "");
+            var strArray = GetFromStringCoordinates(bounds);
             shape.LeftBottomLatitude = GetDouble(strArray.ElementAtOrDefault(0));
             shape.LeftBottomLongitude = GetDouble(strArray.ElementAtOrDefault(1));
             shape.RightUpLatitude = GetDouble(strArray.ElementAtOrDefault(2));
@@ -54,6 +54,16 @@ namespace MoeSto.Web.Controllers.UtilsMethods
             return 0;
         }
 
+        public static IEnumerable<string> GetFromStringCoordinates(string pureString)
+        {
+            if (pureString != null)
+            {
+                var strArray = Regex.Split(pureString, @"[^0-9\.]+").Where(c => c != "." && c.Trim() != "");
+                return strArray;
+            }
+            return null;
+        }
+
         public static CompanyDetailsDto CompanyDetailsToDto(CompanyDetails details, Images image)
         {
             if (details != null)
@@ -65,6 +75,25 @@ namespace MoeSto.Web.Controllers.UtilsMethods
                 companyDetails.Phones = details.Phones;
                 //companyDetails.MainImage = image.MainImage;
                 return companyDetails;
+            }
+            return null;
+        }
+
+        public static List<CompanyDetailsDto> ClusterDetailsToDto(List<CompanyDetails> details)
+        {
+            if (details != null)
+            {
+                List<CompanyDetailsDto> detailsList =new List<CompanyDetailsDto>();
+                foreach (var detailsItem in details)
+                {
+                    CompanyDetailsDto dtoObj = new CompanyDetailsDto();
+                    dtoObj.Name = detailsItem.Name;
+                    dtoObj.Address = detailsItem.Address;
+                    dtoObj.Email = detailsItem.Email;
+                    dtoObj.Phones = detailsItem.Phones;
+                    detailsList.Add(dtoObj);
+                }
+                return detailsList;
             }
             return null;
         }

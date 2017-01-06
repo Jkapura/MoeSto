@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using System.Web.Mvc;
 using System.Web.Script.Serialization;
 using MoeSto.DAC;
@@ -38,8 +39,28 @@ namespace MoeSto.Web.Controllers
             return null;
         }
 
-        
+        public JsonResult GetCompanyDetailsByCoordinates(string coordinates)
+        {
+            if (coordinates != null)
+            {
+                List<double> twoCoords=new List<double>();
+                var stringCoords = Utils.GetFromStringCoordinates(coordinates);
+                foreach (var item in stringCoords)
+                {
+                    twoCoords.Add(Utils.GetDouble(item)); 
+                }
+                var details =
+                    dbContext.CompanyDetails.Where(
+                        x => x.Longitude.Equals(twoCoords[1]) && x.Latitude.Equals(twoCoords[0])).ToList();
+                var image=0;
+                //todo search for image
+                var companyDetails = Utils.ClusterDetailsToDto(details);
+                return Json(companyDetails, JsonRequestBehavior.AllowGet);
+            }
+            return null;
+        }
 
-        
+
+
     }
 }
