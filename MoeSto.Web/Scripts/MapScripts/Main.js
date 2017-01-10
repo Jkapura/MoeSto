@@ -73,7 +73,7 @@ function init() {
                         object.properties = {
                             //balloonContentHeader: getBalloonContentHeader(data),
                             balloonContentBody: getBalloonContentBody(data),
-                            ballonContentFooter: getBalloonContentFooter(data)
+                            //ballonContentFooter: getBalloonContentFooter(data)
                         };
                         loadingObjectManager.objects.balloon.open(objectId);
                        
