@@ -5,7 +5,7 @@
       <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="Latitude" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
       <Column Name="Longitude" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
-      <Association Name="Company_CompanyDetail" Member="CompanyDetail" ThisKey="Id" OtherKey="Id" Type="CompanyDetails" Cardinality="One" />
+      <Association Name="Companies_CompanyDetail" Member="CompanyDetails" ThisKey="Id" OtherKey="Id" Type="CompanyDetails" Cardinality="One" />
     </Type>
   </Table>
   <Table Name="dbo.Images" Member="Images">
@@ -13,8 +13,8 @@
       <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="CompanyId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="MainImage" Type="System.Data.Linq.Binary" DbType="VarBinary(MAX) NOT NULL" CanBeNull="false" UpdateCheck="Never" />
-      <Association Name="Image_CompanyDetail" Member="CompanyDetails" ThisKey="Id" OtherKey="MainImageId" Type="CompanyDetails" />
-      <Association Name="CompanyDetail_Image" Member="CompanyDetail" ThisKey="CompanyId" OtherKey="Id" Type="CompanyDetails" IsForeignKey="true" />
+      <Association Name="Images_CompanyDetail" Member="CompanyDetails" ThisKey="Id" OtherKey="MainImageId" Type="CompanyDetails" />
+      <Association Name="CompanyDetail_Images" Member="CompanyDetail" ThisKey="CompanyId" OtherKey="Id" Type="CompanyDetails" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.CompanyDetails" Member="CompanyDetails">
@@ -33,9 +33,10 @@
       <Column Name="Latitude" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
       <Column Name="Longitude" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
       <Column Name="MainImageId" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Association Name="CompanyDetail_Image" Member="Images" ThisKey="Id" OtherKey="CompanyId" Type="Images" />
-      <Association Name="Company_CompanyDetail" Member="Companies" Storage="_Company" ThisKey="Id" OtherKey="Id" Type="Companies" IsForeignKey="true" />
-      <Association Name="Image_CompanyDetail" Member="Image" ThisKey="MainImageId" OtherKey="Id" Type="Images" IsForeignKey="true" />
+      <Column Name="City" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Association Name="CompanyDetail_Images" Member="Images" ThisKey="Id" OtherKey="CompanyId" Type="Images" />
+      <Association Name="Companies_CompanyDetail" Member="Companies" ThisKey="Id" OtherKey="Id" Type="Companies" IsForeignKey="true" />
+      <Association Name="Images_CompanyDetail" Member="Images2" ThisKey="MainImageId" OtherKey="Id" Type="Images" IsForeignKey="true" />
     </Type>
   </Table>
   <Function Name="dbo.GetCompanyDetailsById" Method="GetCompanyDetailsById" IsComposable="true">

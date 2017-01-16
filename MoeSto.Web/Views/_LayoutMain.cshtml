@@ -3,16 +3,11 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width"/>
-    @RenderSection("Styles" , required: false)
+    @RenderSection("Styles", required: false)
     @RenderSection("Scripts", required: false)
     <title>@ViewBag.Title</title>
 </head>
-<body>
-<div>
+    @RenderSection("Header",required:false)
     @RenderSection("Body", required: false)
-</div>
-<div>
-   
-</div>
-</body>
+    @RenderSection("Footer",required:false)
 </html>

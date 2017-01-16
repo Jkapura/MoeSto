@@ -116,6 +116,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\DtoObjects\CompanyDetailsDto.cs" />
+    <Compile Include="Models\DtoObjects\YPointProperties.cs" />
     <Compile Include="Models\Shape.cs" />
     <Compile Include="Models\DtoObjects\YPoint.cs" />
     <Compile Include="Models\DtoObjects\YPointCollection.cs" />
@@ -677,6 +678,12 @@
       <Project>{D8879A13-4636-4A38-B826-E2A3672C7936}</Project>
       <Name>MoeSto.DAC</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\MoeSto\CompanyDetails.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\MoeSto\ContactMapView.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

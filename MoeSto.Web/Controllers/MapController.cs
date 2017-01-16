@@ -14,9 +14,18 @@ namespace MoeSto.Web.Controllers
         DataAccessManagerDataContext dbContext = new DataAccessManagerDataContext();
         public string tile(string bbox, string callback)
         {
+            
             if (bbox != null)
             {
                 var shape = Utils.GetShapeFromBounds(bbox);
+                //var result = from Details in dbContext.CompanyDetails
+                //                select new
+                //                {
+                //                    Details.Companies.Id,
+                //                    Details.Companies.Latitude,
+                //                    Details.Companies.Longitude,
+                //                    Details.City
+                //                };
                 var result = Utils.ConvertCompaniesToDto(
                     dbContext.Companies.Where(
                         x =>

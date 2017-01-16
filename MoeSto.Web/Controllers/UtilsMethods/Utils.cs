@@ -23,6 +23,11 @@ namespace MoeSto.Web.Controllers.UtilsMethods
                     _geometry.coordinates.Add(item.Longitude);
                     point.geometry = _geometry;
                     points.features.Add(point);
+                    //add city
+                    YPointProperties _properties = new YPointProperties();
+                    _properties.city = item.CompanyDetails.City;
+                    point.properties = _properties;
+
                 }
                 return points;
             }

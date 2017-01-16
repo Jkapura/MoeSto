@@ -6,12 +6,14 @@
 .imgWrapper {
     box-shadow:  inset 0px 0px 83px 33px rgba(0,0,0,0.31);
 }
+
 .companyDetailsImg {
     background-image: url(https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcS1X24OL0XceTu80WY_0-V-2kWRYgNTP4AXfUGdIgwm7-p8h_Yf);
     width: 260px;
     height: 160px;
     position: relative;
     background-size: cover;
+    cursor: pointer;
 }
 .companyDetailsName {
     color: white;
