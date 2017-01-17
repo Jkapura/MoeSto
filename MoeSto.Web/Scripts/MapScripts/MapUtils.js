@@ -26,7 +26,7 @@
         },
         //return markup template for single geoObject balloon
         getBalloonContentBody: function (id, data) {
-            return '<div class="companyDetailsWrapper"><a href="MoeSto/CompanyDetails/' + id + '" target="_blank"><div class="companyDetailsImg imgWrapper"><p class="companyDetailsName">' +
+            return '<div class="companyDetailsWrapper"><a href="Company/View/' + id + '" target="_blank"><div class="companyDetailsImg imgWrapper"><p class="companyDetailsName">' +
                 (data.Name != null ? data.Name : "") +
                 '</p></div></a><div class="companyDetailsCommon"><p>' +
                 (data.Address != null ? data.Address : "") + '</p><p>' +

@@ -109,6 +109,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\CompanyController.cs" />
     <Compile Include="Controllers\MapController.cs" />
     <Compile Include="Controllers\MoeStoController.cs" />
     <Compile Include="Controllers\UtilsMethods\Utils.cs" />
@@ -167,6 +168,7 @@
     <Content Include="Scripts\js\assets\tmpl.js" />
     <Content Include="Scripts\js\assets\waypoints.min.js" />
     <Content Include="Scripts\js\assets\_owl.carousel.min.js" />
+    <Content Include="Scripts\MapScripts\ContactMapScript.js" />
     <Content Include="Scripts\MapScripts\MapController.js" />
     <Content Include="Scripts\MapScripts\MapUtils.js" />
     <Content Include="Scripts\MapScripts\Main.js" />
@@ -595,7 +597,7 @@
     <Content Include="Views\_LayoutMain.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\MoeSto\Main.cshtml" />
+    <Content Include="Views\MoeSto\Map.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Styles\bootstrap\css\bootstrap-theme.css.map" />
@@ -680,10 +682,13 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\MoeSto\CompanyDetails.cshtml" />
+    <Content Include="Views\Company\ContactMapView.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\MoeSto\ContactMapView.cshtml" />
+    <Content Include="Views\Company\View.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Company\Edit.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

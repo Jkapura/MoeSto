@@ -1,0 +1,31 @@
+﻿<div id="contact-map"></div>
+<script src="https://api-maps.yandex.ru/2.1/?lang=ru-RU" type="text/javascript"></script>
+<script type="text/javascript" src="~/Scripts/js/assets/custom-map.js"></script>
+<script type="text/javascript" src="~/Scripts/js/assets/custom.js"></script>
+@*<script type="text/javascript"  src="~/Scripts/MapScripts/ContactMapScript.js"></script>*@
+<script type="text/javascript"  src="~/Scripts/MapScripts/MapUtils.js"></script>
+@*&ll=@ViewBag.CompanyDetails.Latitude,@ViewBag.CompanyDetails.Longitude*@
+<script>
+    var latitude = @ViewBag.CompanyDetails.Latitude
+        longitude= @ViewBag.CompanyDetails.Longitude
+        @*name = @ViewBag.CompanyDetails.Name*@
+        ymaps.ready(init);
+    var myMap, myPlacemark;
+
+    function init() {
+       
+        myMap = new ymaps.Map("contact-map", {
+            center: [latitude,longitude],
+            zoom: 12,
+            controls: ['zoomControl', 'typeSelector', 'fullscreenControl']
+        }, {
+            searchControlProvider: 'yandex#search'
+        });
+        myPlacemark = new ymaps.Placemark([latitude, longitude], {
+            balloonContent: name
+        });
+        myMap.geoObjects.add(myPlacemark);
+    }
+
+
+</script>
