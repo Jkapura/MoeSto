@@ -171,7 +171,7 @@
     <Content Include="Scripts\MapScripts\ContactMapScript.js" />
     <Content Include="Scripts\MapScripts\MapController.js" />
     <Content Include="Scripts\MapScripts\MapUtils.js" />
-    <Content Include="Scripts\MapScripts\Main.js" />
+    <Content Include="Scripts\MapScripts\Map.js" />
     <Content Include="Styles\bootstrap\css\bootstrap-theme.css" />
     <Content Include="Styles\bootstrap\css\bootstrap-theme.min.css" />
     <Content Include="Styles\bootstrap\css\bootstrap.css" />

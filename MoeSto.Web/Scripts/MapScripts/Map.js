@@ -40,22 +40,25 @@ function init() {
 
         $('#clearFilterButton').click(function () {
 
-            loadingObjectManager.setFilter(function (obj) {
-                return undefined;
-            });
+           
         });
         $('.slt_formSaleCity').change(function () {
-            loadingObjectManager.setFilter(function () {
+            //loadingObjectManager.setFilter(function () {
 
-                return undefined;
+            //    return undefined;
                 
-            });
+            //});
             var city = $('.slt_formSaleCity').val();
             
             loadingObjectManager.setFilter(function (obj) {
                 return obj.properties.city == city;
             });
-            
+            if (city == "") {
+                loadingObjectManager.setFilter(function (obj) {
+                    return obj;
+                });
+               
+            }
             var myGeocoder = ymaps.geocode(city);
             myGeocoder.then(
             function (res) {
