@@ -2,9 +2,9 @@
 // jQuery
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-$(document).ready(function($) {
+$(document).ready(function ($) {
+    
     "use strict";
-
     equalHeight('.equal-height');
 
     $('.nav > li > ul li > ul').css('left', $('.nav > li > ul').width());
