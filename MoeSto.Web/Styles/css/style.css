@@ -5893,3 +5893,18 @@ body, html {
   page-break-after: auto;
   margin: 0;
 }
+
+/*---------------------------Custom styles----------------------------------*/
+#gallery {
+    display: none;
+    
+    
+}
+#upload-imgs {
+    color: white;
+    display: inline-block;
+}
+.block-hidden {
+    padding: 10px 0 50px 0;
+}
+

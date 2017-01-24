@@ -12,6 +12,12 @@
     [CardoneContractStatus] NVARCHAR (MAX) NULL,
     [Latitude]              FLOAT (53)     NOT NULL,
     [Longitude]             FLOAT (53)     NOT NULL,
-    CONSTRAINT [PK_CompanyDetails] PRIMARY KEY CLUSTERED ([Id] ASC)
+    [MainImageId]           INT            NULL,
+    [City]                  NVARCHAR (50)  NULL,
+    CONSTRAINT [PK_CompanyDetails] PRIMARY KEY CLUSTERED ([Id] ASC),
+    CONSTRAINT [FK_CompanyDetails_Companies] FOREIGN KEY ([Id]) REFERENCES [dbo].[Companies] ([Id]),
+    CONSTRAINT [FK_CompanyDetails_Images] FOREIGN KEY ([MainImageId]) REFERENCES [dbo].[Images] ([Id])
 );
+
+
 
