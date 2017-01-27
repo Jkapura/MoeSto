@@ -6,10 +6,14 @@
 <script type="text/javascript"  src="~/Scripts/MapScripts/MapUtils.js"></script>
 @*&ll=@ViewBag.CompanyDetails.Latitude,@ViewBag.CompanyDetails.Longitude*@
 <script>
-    var latitude = @ViewBag.CompanyDetails.Latitude
-        longitude= @ViewBag.CompanyDetails.Longitude
-        @*name = @ViewBag.CompanyDetails.Name*@
-        ymaps.ready(init);
+    @if (@ViewBag.CompanyDetails.Latitude != null && @ViewBag.CompanyDetails.Longitude!=null)
+    {
+        var latitude = @ViewBag.CompanyDetails.Latitude;
+        var longitude = @ViewBag.CompanyDetails.Longitude;
+    }
+    
+    @*name = @ViewBag.CompanyDetails.Name*@
+    ymaps.ready(init);
     var myMap, myPlacemark;
 
     function init() {

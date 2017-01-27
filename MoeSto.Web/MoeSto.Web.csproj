@@ -692,6 +692,7 @@
     <Content Include="Views\Web.config" />
     <Content Include="Scripts\js\assets\jquery-1.12.4.min.map" />
     <Content Include="Views\Company\UploadResultView.cshtml" />
+    <Content Include="Views\Company\ContactMapDraggableView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

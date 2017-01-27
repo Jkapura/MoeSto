@@ -25,6 +25,7 @@ namespace MoeSto.Web.Controllers
         {
             ViewBag.Cities = dbContext.CompanyDetails.Where(x => x.City != null && x.City != "").Select(x => x.City).Distinct().ToList();
             ViewBag.CompanyDetails = dbContext.CompanyDetails.FirstOrDefault(x => x.Id.Equals(id));
+            ViewBag.Images = dbContext.Images.Where(x => x.CompanyId.Equals(id));
             return View();
         }
         [HttpPost]

@@ -63,6 +63,5 @@
     <Build Include="dbo\Tables\Companies.sql" />
     <Build Include="dbo\Tables\CompanyDetails.sql" />
     <Build Include="dbo\Tables\Images.sql" />
-    <Build Include="dbo\Functions\GetCompanyDetailsById.sql" />
   </ItemGroup>
 </Project>
