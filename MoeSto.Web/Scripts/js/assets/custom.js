@@ -6,7 +6,7 @@ $(document).ready(function ($) {
     
     "use strict";
     equalHeight('.equal-height');
-    
+
     $('.nav > li > ul li > ul').css('left', $('.nav > li > ul').width());
 
     var navigationLi = $('.nav > li');
@@ -288,7 +288,7 @@ $(document).ready(function ($) {
     }
     
     centerSearchBox();
-    
+
 });
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -300,7 +300,6 @@ $(window).on('resize', function(){
     setCarouselWidth();
     equalHeight('.equal-height');
     centerSlider();
-    
 });
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

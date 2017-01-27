@@ -1,8 +1,6 @@
 ﻿using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
-using System.Web;
 using MoeSto.DAC;
 using MoeSto.Web.Models;
 using MoeSto.Web.Models.DtoObjects;
@@ -103,21 +101,6 @@ namespace MoeSto.Web.Controllers.UtilsMethods
                 return detailsList;
             }
             return null;
-        }
-
-        public static Images GetImgFromRequst(HttpRequestBase requst, HttpPostedFileBase file)
-        {
-            var newImg = new Images();
-            newImg.ImageName = Path.GetFileName(file.FileName);
-            int CompanyId;
-            int.TryParse(requst.UrlReferrer.Segments[3], out CompanyId);
-            newImg.CompanyId = CompanyId;
-            byte[] buffer = new byte[file.InputStream.Length];
-            file.InputStream.Seek(0, SeekOrigin.Begin);
-            file.InputStream.Read(buffer, 0, file.ContentLength);
-            newImg.Image = buffer;
-            newImg.MainImage = false;
-            return newImg;
         }
     }
 }

@@ -33,12 +33,12 @@ namespace MoeSto.DAC
     partial void InsertCompanies(Companies instance);
     partial void UpdateCompanies(Companies instance);
     partial void DeleteCompanies(Companies instance);
-    partial void InsertCompanyDetails(CompanyDetails instance);
-    partial void UpdateCompanyDetails(CompanyDetails instance);
-    partial void DeleteCompanyDetails(CompanyDetails instance);
     partial void InsertImages(Images instance);
     partial void UpdateImages(Images instance);
     partial void DeleteImages(Images instance);
+    partial void InsertCompanyDetails(CompanyDetails instance);
+    partial void UpdateCompanyDetails(CompanyDetails instance);
+    partial void DeleteCompanyDetails(CompanyDetails instance);
     #endregion
 		
 		public DataAccessManagerDataContext() : 
@@ -79,19 +79,19 @@ namespace MoeSto.DAC
 			}
 		}
 		
-		public System.Data.Linq.Table<CompanyDetails> CompanyDetails
-		{
-			get
-			{
-				return this.GetTable<CompanyDetails>();
-			}
-		}
-		
 		public System.Data.Linq.Table<Images> Images
 		{
 			get
 			{
 				return this.GetTable<Images>();
+			}
+		}
+		
+		public System.Data.Linq.Table<CompanyDetails> CompanyDetails
+		{
+			get
+			{
+				return this.GetTable<CompanyDetails>();
 			}
 		}
 		
@@ -115,6 +115,7 @@ namespace MoeSto.DAC
 		private double _Longitude;
 		
 		private EntityRef<CompanyDetails> _CompanyDetails;
+        
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -194,7 +195,7 @@ namespace MoeSto.DAC
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Companies_CompanyDetails", Storage="_CompanyDetails", ThisKey="Id", OtherKey="Id", IsUnique=true, IsForeignKey=false)]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Companies_CompanyDetail", Storage="_CompanyDetails", ThisKey="Id", OtherKey="Id", IsUnique=true, IsForeignKey=false)]
 		public CompanyDetails CompanyDetails
 		{
 			get
@@ -244,6 +245,185 @@ namespace MoeSto.DAC
 		}
 	}
 	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Images")]
+	public partial class Images : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _Id;
+		
+		private int _CompanyId;
+		
+		private System.Data.Linq.Binary _MainImage;
+		
+		private EntitySet<CompanyDetails> _CompanyDetails;
+		
+		private EntityRef<CompanyDetails> _CompanyDetail;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdChanging(int value);
+    partial void OnIdChanged();
+    partial void OnCompanyIdChanging(int value);
+    partial void OnCompanyIdChanged();
+    partial void OnMainImageChanging(System.Data.Linq.Binary value);
+    partial void OnMainImageChanged();
+    #endregion
+		
+		public Images()
+		{
+			this._CompanyDetails = new EntitySet<CompanyDetails>(new Action<CompanyDetails>(this.attach_CompanyDetails), new Action<CompanyDetails>(this.detach_CompanyDetails));
+			this._CompanyDetail = default(EntityRef<CompanyDetails>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this.OnIdChanging(value);
+					this.SendPropertyChanging();
+					this._Id = value;
+					this.SendPropertyChanged("Id");
+					this.OnIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CompanyId", DbType="Int NOT NULL")]
+		public int CompanyId
+		{
+			get
+			{
+				return this._CompanyId;
+			}
+			set
+			{
+				if ((this._CompanyId != value))
+				{
+					if (this._CompanyDetail.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnCompanyIdChanging(value);
+					this.SendPropertyChanging();
+					this._CompanyId = value;
+					this.SendPropertyChanged("CompanyId");
+					this.OnCompanyIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MainImage", DbType="VarBinary(MAX) NOT NULL", CanBeNull=false, UpdateCheck=UpdateCheck.Never)]
+		public System.Data.Linq.Binary MainImage
+		{
+			get
+			{
+				return this._MainImage;
+			}
+			set
+			{
+				if ((this._MainImage != value))
+				{
+					this.OnMainImageChanging(value);
+					this.SendPropertyChanging();
+					this._MainImage = value;
+					this.SendPropertyChanged("MainImage");
+					this.OnMainImageChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Images_CompanyDetail", Storage="_CompanyDetails", ThisKey="Id", OtherKey="MainImageId")]
+		public EntitySet<CompanyDetails> CompanyDetails
+		{
+			get
+			{
+				return this._CompanyDetails;
+			}
+			set
+			{
+				this._CompanyDetails.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="CompanyDetail_Images", Storage="_CompanyDetail", ThisKey="CompanyId", OtherKey="Id", IsForeignKey=true)]
+		public CompanyDetails CompanyDetail
+		{
+			get
+			{
+				return this._CompanyDetail.Entity;
+			}
+			set
+			{
+				CompanyDetails previousValue = this._CompanyDetail.Entity;
+				if (((previousValue != value) 
+							|| (this._CompanyDetail.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._CompanyDetail.Entity = null;
+						previousValue.Images.Remove(this);
+					}
+					this._CompanyDetail.Entity = value;
+					if ((value != null))
+					{
+						value.Images.Add(this);
+						this._CompanyId = value.Id;
+					}
+					else
+					{
+						this._CompanyId = default(int);
+					}
+					this.SendPropertyChanged("CompanyDetail");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_CompanyDetails(CompanyDetails entity)
+		{
+			this.SendPropertyChanging();
+			entity.Images2 = this;
+		}
+		
+		private void detach_CompanyDetails(CompanyDetails entity)
+		{
+			this.SendPropertyChanging();
+			entity.Images2 = null;
+		}
+	}
+	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.CompanyDetails")]
 	public partial class CompanyDetails : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -284,7 +464,7 @@ namespace MoeSto.DAC
 		
 		private EntityRef<Companies> _Companies;
 		
-		private EntityRef<Images> _Image;
+		private EntityRef<Images> _Images2;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -326,7 +506,7 @@ namespace MoeSto.DAC
 		{
 			this._Images = new EntitySet<Images>(new Action<Images>(this.attach_Images), new Action<Images>(this.detach_Images));
 			this._Companies = default(EntityRef<Companies>);
-			this._Image = default(EntityRef<Images>);
+			this._Images2 = default(EntityRef<Images>);
 			OnCreated();
 		}
 		
@@ -605,7 +785,7 @@ namespace MoeSto.DAC
 			{
 				if ((this._MainImageId != value))
 				{
-					if (this._Image.HasLoadedOrAssignedValue)
+					if (this._Images2.HasLoadedOrAssignedValue)
 					{
 						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
 					}
@@ -638,7 +818,7 @@ namespace MoeSto.DAC
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="CompanyDetails_Images", Storage="_Images", ThisKey="Id", OtherKey="CompanyId")]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="CompanyDetail_Images", Storage="_Images", ThisKey="Id", OtherKey="CompanyId")]
 		public EntitySet<Images> Images
 		{
 			get
@@ -651,7 +831,7 @@ namespace MoeSto.DAC
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Companies_CompanyDetails", Storage="_Companies", ThisKey="Id", OtherKey="Id", IsForeignKey=true)]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Companies_CompanyDetail", Storage="_Companies", ThisKey="Id", OtherKey="Id", IsForeignKey=true)]
 		public Companies Companies
 		{
 			get
@@ -685,26 +865,26 @@ namespace MoeSto.DAC
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Images_CompanyDetails", Storage="_Image", ThisKey="MainImageId", OtherKey="Id", IsForeignKey=true)]
-		public Images Image
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Images_CompanyDetail", Storage="_Images2", ThisKey="MainImageId", OtherKey="Id", IsForeignKey=true)]
+		public Images Images2
 		{
 			get
 			{
-				return this._Image.Entity;
+				return this._Images2.Entity;
 			}
 			set
 			{
-				Images previousValue = this._Image.Entity;
+				Images previousValue = this._Images2.Entity;
 				if (((previousValue != value) 
-							|| (this._Image.HasLoadedOrAssignedValue == false)))
+							|| (this._Images2.HasLoadedOrAssignedValue == false)))
 				{
 					this.SendPropertyChanging();
 					if ((previousValue != null))
 					{
-						this._Image.Entity = null;
+						this._Images2.Entity = null;
 						previousValue.CompanyDetails.Remove(this);
 					}
-					this._Image.Entity = value;
+					this._Images2.Entity = value;
 					if ((value != null))
 					{
 						value.CompanyDetails.Add(this);
@@ -714,7 +894,7 @@ namespace MoeSto.DAC
 					{
 						this._MainImageId = default(Nullable<int>);
 					}
-					this.SendPropertyChanged("Image");
+					this.SendPropertyChanged("Images2");
 				}
 			}
 		}
@@ -742,240 +922,13 @@ namespace MoeSto.DAC
 		private void attach_Images(Images entity)
 		{
 			this.SendPropertyChanging();
-			entity.CompanyDetails1 = this;
+			entity.CompanyDetail = this;
 		}
 		
 		private void detach_Images(Images entity)
 		{
 			this.SendPropertyChanging();
-			entity.CompanyDetails1 = null;
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Images")]
-	public partial class Images : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _Id;
-		
-		private int _CompanyId;
-		
-		private bool _MainImage;
-		
-		private string _ImageName;
-		
-		private System.Data.Linq.Binary _Image1;
-		
-		private EntitySet<CompanyDetails> _CompanyDetails;
-		
-		private EntityRef<CompanyDetails> _CompanyDetails1;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnIdChanging(int value);
-    partial void OnIdChanged();
-    partial void OnCompanyIdChanging(int value);
-    partial void OnCompanyIdChanged();
-    partial void OnMainImageChanging(bool value);
-    partial void OnMainImageChanged();
-    partial void OnImageNameChanging(string value);
-    partial void OnImageNameChanged();
-    partial void OnImageChanging(System.Data.Linq.Binary value);
-    partial void OnImageChanged();
-    #endregion
-		
-		public Images()
-		{
-			this._CompanyDetails = new EntitySet<CompanyDetails>(new Action<CompanyDetails>(this.attach_CompanyDetails), new Action<CompanyDetails>(this.detach_CompanyDetails));
-			this._CompanyDetails1 = default(EntityRef<CompanyDetails>);
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int Id
-		{
-			get
-			{
-				return this._Id;
-			}
-			set
-			{
-				if ((this._Id != value))
-				{
-					this.OnIdChanging(value);
-					this.SendPropertyChanging();
-					this._Id = value;
-					this.SendPropertyChanged("Id");
-					this.OnIdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CompanyId", DbType="Int NOT NULL")]
-		public int CompanyId
-		{
-			get
-			{
-				return this._CompanyId;
-			}
-			set
-			{
-				if ((this._CompanyId != value))
-				{
-					if (this._CompanyDetails1.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnCompanyIdChanging(value);
-					this.SendPropertyChanging();
-					this._CompanyId = value;
-					this.SendPropertyChanged("CompanyId");
-					this.OnCompanyIdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MainImage", DbType="Bit NOT NULL")]
-		public bool MainImage
-		{
-			get
-			{
-				return this._MainImage;
-			}
-			set
-			{
-				if ((this._MainImage != value))
-				{
-					this.OnMainImageChanging(value);
-					this.SendPropertyChanging();
-					this._MainImage = value;
-					this.SendPropertyChanged("MainImage");
-					this.OnMainImageChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ImageName", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
-		public string ImageName
-		{
-			get
-			{
-				return this._ImageName;
-			}
-			set
-			{
-				if ((this._ImageName != value))
-				{
-					this.OnImageNameChanging(value);
-					this.SendPropertyChanging();
-					this._ImageName = value;
-					this.SendPropertyChanged("ImageName");
-					this.OnImageNameChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Image1", DbType="VarBinary(MAX) NOT NULL", CanBeNull=false, UpdateCheck=UpdateCheck.Never)]
-		public System.Data.Linq.Binary Image
-		{
-			get
-			{
-				return this._Image1;
-			}
-			set
-			{
-				if ((this._Image1 != value))
-				{
-					this.OnImageChanging(value);
-					this.SendPropertyChanging();
-					this._Image1 = value;
-					this.SendPropertyChanged("Image");
-					this.OnImageChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Images_CompanyDetails", Storage="_CompanyDetails", ThisKey="Id", OtherKey="MainImageId")]
-		public EntitySet<CompanyDetails> CompanyDetails
-		{
-			get
-			{
-				return this._CompanyDetails;
-			}
-			set
-			{
-				this._CompanyDetails.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="CompanyDetails_Images", Storage="_CompanyDetails1", ThisKey="CompanyId", OtherKey="Id", IsForeignKey=true)]
-		public CompanyDetails CompanyDetails1
-		{
-			get
-			{
-				return this._CompanyDetails1.Entity;
-			}
-			set
-			{
-				CompanyDetails previousValue = this._CompanyDetails1.Entity;
-				if (((previousValue != value) 
-							|| (this._CompanyDetails1.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._CompanyDetails1.Entity = null;
-						previousValue.Images.Remove(this);
-					}
-					this._CompanyDetails1.Entity = value;
-					if ((value != null))
-					{
-						value.Images.Add(this);
-						this._CompanyId = value.Id;
-					}
-					else
-					{
-						this._CompanyId = default(int);
-					}
-					this.SendPropertyChanged("CompanyDetails1");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-		
-		private void attach_CompanyDetails(CompanyDetails entity)
-		{
-			this.SendPropertyChanging();
-			entity.Image = this;
-		}
-		
-		private void detach_CompanyDetails(CompanyDetails entity)
-		{
-			this.SendPropertyChanging();
-			entity.Image = null;
+			entity.CompanyDetail = null;
 		}
 	}
 	

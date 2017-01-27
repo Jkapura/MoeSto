@@ -32,22 +32,7 @@
     <script type="text/javascript" src="~/Scripts/js/assets/jquery.dependClass-0.1.js"></script>
     <script type="text/javascript" src="~/Scripts/js/assets/draggable-0.1.js"></script>
     <script type="text/javascript" src="~/Scripts/js/assets/jquery.slider.js"></script>
-
-
-<script type="text/javascript" src="~/Scripts/js/assets/owl.carousel.min.js"></script>
-<script type="text/javascript" src="~/Scripts/js/assets/bootstrap-select.min.js"></script>
-<script type="text/javascript" src="~/Scripts/js/assets/jquery.validate.min.js"></script>
-<script type="text/javascript" src="~/Scripts/js/assets/jquery.placeholder.js"></script>
-<script type="text/javascript" src="~/Scripts/js/assets/icheck.min.js"></script>
-<script type="text/javascript" src="~/Scripts/js/assets/jquery.raty.min.js"></script>
-<script type="text/javascript" src="~/Scripts/js/assets/jquery.magnific-popup.min.js"></script>
-<script type="text/javascript" src="~/Scripts/js/assets/jquery.fitvids.js"></script>
-<script type="text/javascript">
-    $(window).load(function(){
-        initializeOwl(false);
-    });
-</script>
-
+    
 }
 @section Body{
     <body class="page-sub-page page-contact" id="page-top">
@@ -202,8 +187,8 @@
                                                 <header>
                                                     <h3>Адрес</h3>
                                                 </header>
-                                                    <strong>@ViewBag.CompanyDetails.Name</strong><br>
                                                 <address>
+                                                    <strong>@ViewBag.CompanyDetails.Name</strong><br>
                                                     @ViewBag.CompanyDetails.Address
                                                 </address>
                                                 @ViewBag.CompanyDetails.Phones<br>
@@ -237,40 +222,11 @@
                                     <!-- /.row -->
                                 </section>
                                 <!-- /#agent-info -->
-                                <h3>О нас</h3>
                                 <hr class="thick">
-                                <section id="property-gallery">
-                                    <div class="owl-carousel property-carousel">
-                                        <div class="property-slide">
-                                            <a href="~/Styles/img/properties/property-detail-01.jpg" class="image-popup">
-                                                <div class="overlay">
-                                                    <h3>Front View</h3>
-                                                </div>
-                                                <img alt="" src="~/Styles/img/properties/property-detail-01.jpg">
-                                            </a>
-                                        </div><!-- /.property-slide -->
-                                        <div class="property-slide">
-                                            <a href="~/Styles/img/properties/property-detail-02.jpg" class="image-popup">
-                                                <div class="overlay">
-                                                    <h3>Bedroom</h3>
-                                                </div>
-                                                <img alt="" src="~/Styles/img/properties/property-detail-02.jpg">
-                                            </a>
-                                        </div><!-- /.property-slide -->
-                                        <div class="property-slide">
-                                            <a href="~/Styles/img/properties/property-detail-03.jpg" class="image-popup">
-                                                <div class="overlay">
-                                                    <h3>Bathroom</h3>
-                                                </div>
-                                                <img alt="" src="~/Styles/img/properties/property-detail-03.jpg">
-                                            </a>
-                                        </div><!-- /.property-slide -->
-                                    </div><!-- /.property-carousel -->
-                                </section>
-                                <h3>Send Us a Message</h3>
-                                 <hr class="thick">
                                 <section id="form">
-                                    
+                                    <header>
+                                        <h3>Send Us a Message</h3>
+                                    </header>
                                     <form role="form" id="form-contact" method="post" class="clearfix">
                                         <div class="row">
                                             <div class="col-md-6">
@@ -316,7 +272,85 @@
                         <!-- /.col-md-9 -->
                         <!-- end Contact -->
 
-                       
+                        <!-- sidebar -->
+                        <div class="col-md-3 col-sm-3">
+                            <section id="sidebar">
+                               
+                                <!-- /#edit-search -->
+                                <aside id="featured-properties">
+                                    <header>
+                                        <h3>Featured Properties</h3>
+                                    </header>
+                                    <div class="property small">
+                                        <a href="property-detail.html">
+                                            <div class="property-image">
+                                                <img alt="" src="assets/img/properties/property-06.jpg">
+                                            </div>
+                                        </a>
+                                        <div class="info">
+                                            <a href="property-detail.html">
+                                                <h4>2186 Rinehart Road</h4>
+                                            </a>
+                                            <figure>Doral, FL 33178 </figure>
+                                            <div class="tag price">$ 72,000</div>
+                                        </div>
+                                    </div>
+                                    <!-- /.property -->
+                                    <div class="property small">
+                                        <a href="property-detail.html">
+                                            <div class="property-image">
+                                                <img alt="" src="assets/img/properties/property-09.jpg">
+                                            </div>
+                                        </a>
+                                        <div class="info">
+                                            <a href="property-detail.html">
+                                                <h4>2479 Murphy Court</h4>
+                                            </a>
+                                            <figure>Minneapolis, MN 55402</figure>
+                                            <div class="tag price">$ 36,000</div>
+                                        </div>
+                                    </div>
+                                    <!-- /.property -->
+                                    <div class="property small">
+                                        <a href="property-detail.html">
+                                            <div class="property-image">
+                                                <img alt="" src="assets/img/properties/property-03.jpg">
+                                            </div>
+                                        </a>
+                                        <div class="info">
+                                            <a href="property-detail.html">
+                                                <h4>1949 Tennessee Avenue</h4>
+                                            </a>
+                                            <figure>Minneapolis, MN 55402</figure>
+                                            <div class="tag price">$ 128,600</div>
+                                        </div>
+                                    </div>
+                                    <!-- /.property -->
+                                </aside>
+                                <!-- /#featured-properties -->
+                                <aside id="our-guides">
+                                    <header>
+                                        <h3>Our Guides</h3>
+                                    </header>
+                                    <a href="#" class="universal-button">
+                                        <figure class="fa fa-home"></figure>
+                                        <span>Buying Guide</span>
+                                        <span class="arrow fa fa-angle-right"></span>
+                                    </a>
+                                    <!-- /.universal-button -->
+                                    <a href="#" class="universal-button">
+                                        <figure class="fa fa-umbrella"></figure>
+                                        <span>Right Insurance for You</span>
+                                        <span class="arrow fa fa-angle-right"></span>
+                                    </a>
+                                    <!-- /.universal-button -->
+                                </aside>
+                                <!-- /#our-guide -->
+                            </section>
+                            <!-- /#sidebar -->
+                        </div>
+                        <!-- /.col-md-3 -->
+                        <!-- end Sidebar -->
                     </div>
                     <!-- /.row -->
                 </div>
@@ -348,7 +382,7 @@
                                         <div class="property small">
                                             <a href="property-detail.html">
                                                 <div class="property-image">
-                                                    <img alt="" src="~/Styles/img/properties/property-06.jpg">
+                                                    <img alt="" src="assets/img/properties/property-06.jpg">
                                                 </div>
                                             </a>
                                             <div class="info">
@@ -363,7 +397,7 @@
                                         <div class="property small">
                                             <a href="property-detail.html">
                                                 <div class="property-image">
-                                                    <img alt="" src="~/Styles/img/properties/property-09.jpg">
+                                                    <img alt="" src="assets/img/properties/property-09.jpg">
                                                 </div>
                                             </a>
                                             <div class="info">
